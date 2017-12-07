@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from './Header';
+import Header from './index';
 
 const links = [
 	{title: 'Sign In', path: '/sign-in'},

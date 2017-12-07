@@ -7,7 +7,7 @@ const Authenticate = styled.form`
 	padding: 1rem;
 `;
 
-const AuthenticateContainer = ({onSubmit}) => (
+const AuthenticateWrapper = ({onSubmit}) => (
 	<Authenticate onSubmit={onSubmit}>
 		<h1>title</h1>
 		<label>
@@ -22,8 +22,8 @@ const AuthenticateContainer = ({onSubmit}) => (
 	</Authenticate>
 );
 
-AuthenticateContainer.propTypes = {
+AuthenticateWrapper.propTypes = {
 	onSubmit: PropTypes.func.isRequired
 };
 
-export default AuthenticateContainer;
+export default AuthenticateWrapper;
