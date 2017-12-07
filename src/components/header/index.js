@@ -1,6 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import {connect} from 'react-redux';
+
+const mapStateToProps = (state) => {
+	return {
+		links: [
+			{title: 'Homex', path: '/'},
+			{title: 'Register', path: '/register'},
+			{title: 'Edit', path: '/juncture/1/edit'}
+		]
+	}
+};
 
 const Header = styled.header`
 	display: flex;
@@ -32,4 +43,4 @@ HeaderWrapper.propTypes = {
 	).isRequired
 };
 
-export default HeaderWrapper;
+export default connect(mapStateToProps)(HeaderWrapper);
