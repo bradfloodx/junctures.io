@@ -1,6 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import {connect} from 'react-redux';
+
+const mapStateToProps = (state) => {
+	return {
+		onSubmit: () => {}
+	}
+};
 
 const Authenticate = styled.form`
 	border: 1px solid cornflowerblue;
@@ -26,4 +33,4 @@ AuthenticateWrapper.propTypes = {
 	onSubmit: PropTypes.func.isRequired
 };
 
-export default AuthenticateWrapper;
+export default connect(mapStateToProps)(AuthenticateWrapper);
