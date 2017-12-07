@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const Header = styled.header`
@@ -18,5 +19,14 @@ const HeaderContainer = () => (
 		</nav>
 	</Header>
 );
+
+HeaderContainer.propTypes = {
+	links: PropTypes.arrayOf(
+		PropTypes.shape({
+			title: PropTypes.string,
+			route: PropTypes.string
+		})
+	)
+};
 
 export default HeaderContainer;
