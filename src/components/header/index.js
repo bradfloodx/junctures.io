@@ -8,7 +8,7 @@ const Header = styled.header`
 	justify-content: space-between;
 `;
 
-const HeaderContainer = ({links}) => (
+const HeaderWrapper = ({links}) => (
 	<Header>
 		<span>TaN</span>
 		<nav>
@@ -23,7 +23,7 @@ const HeaderContainer = ({links}) => (
 	</Header>
 );
 
-HeaderContainer.propTypes = {
+HeaderWrapper.propTypes = {
 	links: PropTypes.arrayOf(
 		PropTypes.shape({
 			title: PropTypes.string,
@@ -32,4 +32,4 @@ HeaderContainer.propTypes = {
 	).isRequired
 };
 
-export default HeaderContainer;
+export default HeaderWrapper;
