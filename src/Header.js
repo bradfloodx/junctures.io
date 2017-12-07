@@ -8,13 +8,16 @@ const Header = styled.header`
 	justify-content: space-between;
 `;
 
-const HeaderContainer = () => (
+const HeaderContainer = ({links}) => (
 	<Header>
 		<span>TaN</span>
 		<nav>
 			<ul>
-				<li>Sign In</li>
-				<li>Register</li>
+				{links.map(({title, path}) => (
+					<li key={title}>
+						<a href={path}>{title}</a>
+					</li>
+				))}
 			</ul>
 		</nav>
 	</Header>
@@ -24,9 +27,9 @@ HeaderContainer.propTypes = {
 	links: PropTypes.arrayOf(
 		PropTypes.shape({
 			title: PropTypes.string,
-			route: PropTypes.string
+			path: PropTypes.string
 		})
-	)
+	).isRequired
 };
 
 export default HeaderContainer;
