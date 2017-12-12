@@ -1,11 +1,23 @@
 import {combineReducers} from 'redux';
 import {routerReducer} from 'react-router-redux';
 
-const userReducer = (state = {user: 'bradley.flood@gmail.com'}) => {
+const defaultUserState = {
+	user: 'bradley.flood@gmail.com'
+};
+
+const userReducer = (state = defaultUserState) => {
 	return state;
 };
 
-const juncturesReducer = (state = [{name: 'Holiday', dateTime: 99, id: 0}]) => {
+const defaultJuncturesState = [
+	{
+		name: 'Holiday',
+		dateTime: 99,
+		id: 0
+	}
+];
+
+const juncturesReducer = (state = defaultJuncturesState) => {
 	return state;
 };
 
