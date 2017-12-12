@@ -47,4 +47,5 @@ JunctureEditFormWrapper.propTypes = {
 	juncture: PropTypes.object
 };
 
+export {JunctureEditFormWrapper as JunctureEditForm};
 export default connect(mapStateToProps)(JunctureEditFormWrapper);
