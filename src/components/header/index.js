@@ -7,7 +7,7 @@ import {push} from 'react-router-redux';
 const mapStateToProps = (state) => {
 	return {
 		links: [
-			{title: 'Homex', path: '/'},
+			{title: 'Home', path: '/'},
 			{title: 'Register', path: '/register'},
 			{title: 'Edit', path: '/juncture/1/edit'}
 		]
@@ -26,17 +26,23 @@ const Header = styled.header`
 	justify-content: space-between;
 `;
 
+const NavList = styled.ul`
+	margin: 0;
+	list-style: none;
+	display: flex;
+`;
+
 const HeaderWrapper = ({links, go}) => (
 	<Header>
 		<span>TaN</span>
 		<nav>
-			<ul>
+			<NavList>
 				{links.map(({title, path}) => (
 					<li key={title} onClick={() => void go(path)}>
-						<a>{title} - {path}</a>
+						<a>{title}</a>
 					</li>
 				))}
-			</ul>
+			</NavList>
 		</nav>
 	</Header>
 );
@@ -51,4 +57,5 @@ HeaderWrapper.propTypes = {
 	go: PropTypes.func
 };
 
+export {HeaderWrapper as Header};
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderWrapper);
