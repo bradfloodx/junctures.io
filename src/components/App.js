@@ -1,15 +1,28 @@
 import React, {Component} from 'react';
 import {Switch, Route} from 'react-router-dom';
+import {connect} from 'react-redux';
+
 import Header from './header/index';
 import Authenticate from './authenticate/index';
 import {JuncturesList, JunctureEditForm} from './junctures/index';
 
+import {fetchJunctures} from '../actions';
+
+const mapStateToProps = (state) => ({});
+
+const mapDispatchToProps = (dispatch) => ({
+	getData: () => dispatch(fetchJunctures())
+});
+
 const handleOnSubmit = (event) => {
 	event.preventDefault();
-	console.log('~~~ event', event);
 };
 
 class App extends Component {
+	componentDidMount() {
+		this.props.getData();
+	}
+
 	render() {
 		return (
 			<div>
@@ -24,4 +37,4 @@ class App extends Component {
 	}
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
