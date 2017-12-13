@@ -9,6 +9,7 @@ const mapStateToProps = (state) => {
 		links: [
 			{title: 'Home', path: '/'},
 			{title: 'Register', path: '/register'},
+			{title: 'Sign In', path: '/sign-in'},
 			{title: 'Edit', path: '/juncture/1/edit'}
 		]
 	}
@@ -32,15 +33,23 @@ const NavList = styled.ul`
 	display: flex;
 `;
 
+const NavItem = styled.li`
+	margin: 10px 15px;
+	
+	&:hover {
+		text-decoration: underline;
+	}
+`;
+
 const HeaderWrapper = ({links, go}) => (
 	<Header>
 		<span>TaN</span>
 		<nav>
 			<NavList>
 				{links.map(({title, path}) => (
-					<li key={title} onClick={() => void go(path)}>
+					<NavItem key={title} onClick={() => void go(path)}>
 						<a>{title}</a>
-					</li>
+					</NavItem>
 				))}
 			</NavList>
 		</nav>
