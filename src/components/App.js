@@ -8,7 +8,7 @@ import {JuncturesList, JunctureEditForm} from './junctures/index';
 
 import {fetchJunctures} from '../actions';
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = ({router}) => ({router});
 
 const mapDispatchToProps = (dispatch) => ({
 	getData: () => dispatch(fetchJunctures())
