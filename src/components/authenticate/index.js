@@ -16,14 +16,14 @@ const Authenticate = styled.form`
 
 const AuthenticateWrapper = ({onSubmit}) => (
 	<Authenticate onSubmit={onSubmit}>
-		<h1>title</h1>
+		<h1>Title</h1>
 		<label>
 			<span>Email</span>
-			<input type="email" placeholder="Email..."/>
+			<input type="email"/>
 		</label>
 		<label>
 			<span>Password</span>
-			<input type="password" placeholder="Password..."/>
+			<input type="password"/>
 		</label>
 		<button type="submit">Go!</button>
 	</Authenticate>
