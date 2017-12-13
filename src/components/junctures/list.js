@@ -7,10 +7,7 @@ import Juncture from './juncture';
 
 const mapStateToProps = (state) => {
 	return {
-		junctures: [
-			{name: 'Weddingx', dateTime: 1234, id: 1},
-			{name: 'DOB', dateTime: 12345, id: 2}
-		]
+		junctures: state.junctures
 	}
 };
 
@@ -45,4 +42,5 @@ JuncturesListWrapper.propTypes = {
 	)
 };
 
+export {JuncturesListWrapper as JuncturesList}
 export default connect(mapStateToProps)(JuncturesListWrapper);
