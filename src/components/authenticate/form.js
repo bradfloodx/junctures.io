@@ -1,22 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {connect} from 'react-redux';
-
-const mapStateToProps = (state) => {
-	return {
-		onSubmit: () => {}
-	}
-};
 
 const Authenticate = styled.form`
 	border: 1px solid cornflowerblue;
 	padding: 1rem;
 `;
 
-const AuthenticateWrapper = ({onSubmit}) => (
+const AuthFormWrapper = ({onSubmit, title}) => (
 	<Authenticate onSubmit={onSubmit}>
-		<h1>Title</h1>
+		<h1>{title}</h1>
 		<label>
 			<span>Email</span>
 			<input type="email"/>
@@ -29,8 +22,9 @@ const AuthenticateWrapper = ({onSubmit}) => (
 	</Authenticate>
 );
 
-AuthenticateWrapper.propTypes = {
-	onSubmit: PropTypes.func.isRequired
+AuthFormWrapper.propTypes = {
+	onSubmit: PropTypes.func.isRequired,
+	title: PropTypes.string.isRequired
 };
 
-export default connect(mapStateToProps)(AuthenticateWrapper);
+export default AuthFormWrapper;
