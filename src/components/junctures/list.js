@@ -5,11 +5,7 @@ import {connect} from 'react-redux';
 
 import Juncture from './juncture';
 
-const mapStateToProps = (state) => {
-	return {
-		junctures: state.junctures
-	}
-};
+const mapStateToProps = ({junctures}) => ({junctures});
 
 const JuncturesList = styled.main`
 	display: flex;
