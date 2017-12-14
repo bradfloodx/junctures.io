@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import Header from '../components/header';
+import Header from './header';
 import Register from './register';
 import SignIn from './sign-in';
-import JuncturesListContainer from './list';
-import JuncturesCreateContainer from './create';
-import JuncturesEditContainer from './edit';
+import JuncturesCreate from './create';
+import JuncturesList from './list';
+import JuncturesEdit from './edit';
 import {fetchJunctures} from '../actions/index';
 import routes from '../routes';
 
@@ -44,16 +44,16 @@ class App extends Component {
 						component={SignIn}
 					/>
 					<Route
-						exact path={routes.junctures.path}
-						component={JuncturesListContainer}
+						exact path={routes.juncturesCreate.path}
+						component={JuncturesCreate}
 					/>
 					<Route
-						exact path={routes.juncturesCreate.path}
-						component={JuncturesCreateContainer}
+						exact path={routes.junctures.path}
+						component={JuncturesList}
 					/>
 					<Route
 						exact path={routes.juncturesEdit.path}
-						component={JuncturesEditContainer}
+						component={JuncturesEdit}
 					/>
 				</Switch>
 			</div>
