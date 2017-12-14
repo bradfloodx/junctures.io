@@ -1,5 +1,5 @@
 import JuncturesList from './list';
-import JunctureEditForm from './edit-form';
+import JunctureEditForm from './form';
 
 export {
 	JuncturesList,
