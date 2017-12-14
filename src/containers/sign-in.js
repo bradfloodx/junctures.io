@@ -2,27 +2,28 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {attemptRegister} from '../../actions';
-import AuthForm from './form';
+import {attemptSignIn} from '../actions';
+import actions from '../actions/types';
+import AuthForm from '../components/auth/form';
 
 const mapStateToProps = ({auth}) => ({...auth});
 
 const mapDispatchToProps = (dispatch) => ({
 	onFieldChange: (key, value) => dispatch({
-		type: 'UPDATE_FIELD_VALUE_AUTH',
+		type: actions.UPDATE_FIELD_VALUE_AUTH,
 		payload: {
 			key,
 			value
 		}
 	}),
-	register: (username, password) =>
-		dispatch(attemptRegister(username, password))
+	signIn: (username, password) =>
+		dispatch(attemptSignIn(username, password))
 });
 
-const RegisterWrapper = (props) => {
+const SignInWrapper = (props) => {
 	const onSubmit = (event) => {
 		event.preventDefault();
-		props.register(
+		props.signIn(
 			props.username,
 			props.password
 		);
@@ -30,7 +31,7 @@ const RegisterWrapper = (props) => {
 
 	return (
 		<AuthForm
-			title={'Register'}
+			title={'Sign In'}
 			onSubmit={onSubmit}
 			onFieldChange={props.onFieldChange}
 			username={props.username}
@@ -39,8 +40,9 @@ const RegisterWrapper = (props) => {
 	)
 };
 
-RegisterWrapper.propTypes = {
-	onSubmit: PropTypes.func.isRequired
+SignInWrapper.propTypes = {
+	onFieldChange: PropTypes.func.isRequired,
+	signIn: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterWrapper);
+export default connect(mapStateToProps, mapDispatchToProps)(SignInWrapper);

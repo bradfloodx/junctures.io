@@ -2,15 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Authenticate = styled.form`
-	border: 1px solid cornflowerblue;
+const AuthForm = styled.form`
 	padding: 1rem;
 `;
 
+const Label = styled.label`
+	display: block;
+	margin: 1em 0;
+`;
+
 const AuthFormWrapper = ({onSubmit, onFieldChange, title, username, password}) => (
-	<Authenticate onSubmit={onSubmit}>
-		<h1>{title}</h1>
-		<label>
+	<AuthForm onSubmit={onSubmit}>
+		<h3>{title}</h3>
+		<Label>
 			<span>Email</span>
 			<input
 				type="email"
@@ -20,8 +24,8 @@ const AuthFormWrapper = ({onSubmit, onFieldChange, title, username, password}) =
 					onFieldChange(event.target.name, event.target.value)
 				}}
 			/>
-		</label>
-		<label>
+		</Label>
+		<Label>
 			<span>Password</span>
 			<input
 				type="password"
@@ -31,9 +35,9 @@ const AuthFormWrapper = ({onSubmit, onFieldChange, title, username, password}) =
 					onFieldChange(event.target.name, event.target.value)
 				}}
 			/>
-		</label>
+		</Label>
 		<button type="submit">Go!</button>
-	</Authenticate>
+	</AuthForm>
 );
 
 AuthFormWrapper.propTypes = {
