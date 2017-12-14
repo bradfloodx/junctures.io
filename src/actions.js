@@ -1,14 +1,18 @@
 import axios from 'axios';
 
-import {firebase} from './firebase';
+import {firebase, database} from './firebase';
 
 export const FETCH_JUNCTURES = 'FETCH_JUNCTURES';
 export const FETCH_JUNCTURES_PENDING = 'FETCH_JUNCTURES_PENDING';
 export const FETCH_JUNCTURES_FULFILLED = 'FETCH_JUNCTURES_FULFILLED';
 
 export const AUTH_ATTEMPT_SIGNIN = 'AUTH_ATTEMPT_SIGNIN';
-export const AUTH_ATTEMPT_SIGNIN_SUCCESS = 'AUTH_ATTEMPT_SIGNIN_SUCCESS';
-export const AUTH_ATTEMPT_SIGNIN_FAIL = 'AUTH_ATTEMPT_SIGNIN_FAIL';
+export const AUTH_ATTEMPT_SIGNIN_FULFILLED = 'AUTH_ATTEMPT_SIGNIN_FULFILLED';
+export const AUTH_ATTEMPT_SIGNIN_ERROR = 'AUTH_ATTEMPT_SIGNIN_ERROR';
+
+export const AUTH_ATTEMPT_REGISTER = 'AUTH_ATTEMPT_REGISTER';
+export const AUTH_ATTEMPT_REGISTER_FULFILLED = 'AUTH_ATTEMPT_REGISTER_FULFILLED';
+export const AUTH_ATTEMPT_REGISTER_ERROR = 'AUTH_ATTEMPT_REGISTER_ERROR';
 
 export function fetchJunctures() {
 	return {
@@ -17,7 +21,7 @@ export function fetchJunctures() {
 	}
 }
 
-export function signIn(username, password) {
+export function attemptSignIn(username, password) {
 	return (dispatch) => {
 		dispatch({type: AUTH_ATTEMPT_SIGNIN});
 
@@ -25,17 +29,44 @@ export function signIn(username, password) {
 			.signInWithEmailAndPassword(username, password)
 			.then((user) => {
 				dispatch({
-					type: 'AUTH_ATTEMPT_SIGNIN_SUCCESS',
+					type: AUTH_ATTEMPT_SIGNIN_FULFILLED,
 					payload: {
 						username: user.email,
 						uid: user.uid
 					}
 				});
 			})
-			.catch(error => {
-				this.setState({error: error.message});
+			.catch((error) => {
 				dispatch({
-					type: 'AUTH_ATTEMPT_SIGNIN_FAIL',
+					type: AUTH_ATTEMPT_SIGNIN_ERROR,
+					payload: error.message
+				});
+			});
+	}
+}
+
+export function attemptRegister(username, password) {
+	return (dispatch) => {
+		dispatch({type: AUTH_ATTEMPT_REGISTER});
+
+		firebase.auth()
+			.createUserWithEmailAndPassword(username, password)
+			.then((user) => {
+				database
+					.ref(`users/${user.uid}`)
+					.set({username: user.email});
+
+				dispatch({
+					type: AUTH_ATTEMPT_REGISTER_FULFILLED,
+					payload: {
+						username: user.email,
+						uid: user.uid
+					}
+				});
+			})
+			.catch((error) => {
+				dispatch({
+					type: AUTH_ATTEMPT_REGISTER_ERROR,
 					payload: error.message
 				});
 			});

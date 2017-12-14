@@ -7,16 +7,30 @@ const Authenticate = styled.form`
 	padding: 1rem;
 `;
 
-const AuthFormWrapper = ({onSubmit, title}) => (
+const AuthFormWrapper = ({onSubmit, onFieldChange, title, username, password}) => (
 	<Authenticate onSubmit={onSubmit}>
 		<h1>{title}</h1>
 		<label>
 			<span>Email</span>
-			<input type="email"/>
+			<input
+				type="email"
+				name="username"
+				value={username}
+				onChange={(event) => {
+					onFieldChange(event.target.name, event.target.value)
+				}}
+			/>
 		</label>
 		<label>
 			<span>Password</span>
-			<input type="password"/>
+			<input
+				type="password"
+				name="password"
+				value={password}
+				onChange={(event) => {
+					onFieldChange(event.target.name, event.target.value)
+				}}
+			/>
 		</label>
 		<button type="submit">Go!</button>
 	</Authenticate>
@@ -24,7 +38,10 @@ const AuthFormWrapper = ({onSubmit, title}) => (
 
 AuthFormWrapper.propTypes = {
 	onSubmit: PropTypes.func.isRequired,
-	title: PropTypes.string.isRequired
+	onFieldChange: PropTypes.func.isRequired,
+	title: PropTypes.string.isRequired,
+	username: PropTypes.string,
+	password: PropTypes.string
 };
 
 export default AuthFormWrapper;
