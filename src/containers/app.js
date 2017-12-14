@@ -5,7 +5,9 @@ import {connect} from 'react-redux';
 import Header from '../components/header/index';
 import Register from './register';
 import SignIn from './sign-in';
-import {JuncturesList, JunctureEditForm} from '../components/junctures/index';
+import JuncturesListContainer from './list';
+import JuncturesCreateContainer from './create';
+import JuncturesEditContainer from './edit';
 import {fetchJunctures} from '../actions/index';
 import routes from '../routes';
 
@@ -29,12 +31,30 @@ class App extends Component {
 			<div>
 				<Header/>
 				<Switch>
-					<Route exact path={routes.home.path} component={Home} />
-					<Route exact path={routes.register.path} component={Register} />
-					<Route exact path={routes.signIn.path} component={SignIn} />
-					<Route exact path={routes.junctures.path} component={JuncturesList} />
-					<Route exact path={routes.juncturesCreate.path} component={JunctureEditForm} />
-					<Route exact path={routes.juncturesEdit.path} component={JunctureEditForm} />
+					<Route
+						exact path={routes.home.path}
+						component={Home}
+					/>
+					<Route
+						exact path={routes.register.path}
+						component={Register}
+					/>
+					<Route
+						exact path={routes.signIn.path}
+						component={SignIn}
+					/>
+					<Route
+						exact path={routes.junctures.path}
+						component={JuncturesListContainer}
+					/>
+					<Route
+						exact path={routes.juncturesCreate.path}
+						component={JuncturesCreateContainer}
+					/>
+					<Route
+						exact path={routes.juncturesEdit.path}
+						component={JuncturesEditContainer}
+					/>
 				</Switch>
 			</div>
 		);
