@@ -5,7 +5,7 @@ import actions from './types';
 
 export function fetchJunctures() {
 	return {
-		type: actions.FETCH_JUNCTURES,
+		type: actions.JUNCTURES_FETCH,
 		payload: axios.get('/mock/junctures.json')
 	}
 }
@@ -59,5 +59,13 @@ export function attemptRegister(username, password) {
 					payload: error.message
 				});
 			});
+	}
+}
+
+export function attemptCreateJuncture(juncture) {
+	return (dispatch) => {
+		dispatch({type: actions.JUNCTURE_CREATE});
+
+
 	}
 }

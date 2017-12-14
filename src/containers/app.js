@@ -8,7 +8,7 @@ import SignIn from './sign-in';
 import JuncturesCreate from './create';
 import JuncturesList from './list';
 import JuncturesEdit from './edit';
-import {fetchJunctures} from '../actions/index';
+import {fetchJunctures} from '../actions/actions';
 import routes from '../routes';
 
 const Home = () => (
