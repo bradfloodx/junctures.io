@@ -11,13 +11,13 @@ export default {
 		title: 'Sign In',
 		path: '/sign-in'
 	},
-	junctures: {
-		title: 'Junctures',
-		path: '/junctures'
-	},
 	juncturesCreate: {
 		title: 'Create',
 		path: '/junctures/new'
+	},
+	junctures: {
+		title: 'Junctures',
+		path: '/junctures'
 	},
 	juncturesEdit: {
 		title: 'Edit',

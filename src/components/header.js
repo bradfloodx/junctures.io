@@ -1,29 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {connect} from 'react-redux';
-import {push} from 'react-router-redux';
-
-import routes from '../routes';
-
-const mapStateToProps = () => {
-	return {
-		links: [
-			routes.home,
-			routes.register,
-			routes.signIn,
-			routes.junctures,
-			routes.juncturesCreate,
-			routes.juncturesEdit
-		]
-	}
-};
-
-const mapDispatchToProps = (dispatch) => {
-	return {
-		go: (path) => dispatch(push(path))
-	}
-};
 
 const Header = styled.header`
 	display: flex;
@@ -70,5 +47,4 @@ HeaderWrapper.propTypes = {
 	go: PropTypes.func
 };
 
-export {HeaderWrapper as Header};
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderWrapper);
+export default HeaderWrapper;
