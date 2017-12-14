@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {connect} from 'react-redux';
 
 import Juncture from './juncture';
-
-const mapStateToProps = ({junctures}) => ({junctures});
 
 const JuncturesList = styled.main`
 	display: flex;
@@ -38,5 +35,4 @@ JuncturesListWrapper.propTypes = {
 	)
 };
 
-export {JuncturesListWrapper as JuncturesList}
-export default connect(mapStateToProps)(JuncturesListWrapper);
+export default JuncturesListWrapper;
