@@ -3,8 +3,8 @@ import {Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import Header from './header/index';
-import Register from './authenticate/register';
-import SignIn from './authenticate/sign-in';
+import Register from '../containers/register';
+import SignIn from '../containers/sign-in';
 import {JuncturesList, JunctureEditForm} from './junctures/index';
 
 import {fetchJunctures} from '../actions';

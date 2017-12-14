@@ -1,16 +1,14 @@
-import {FETCH_JUNCTURES} from "../actions";
-import {FETCH_JUNCTURES_FULFILLED} from "../actions";
-import {FETCH_JUNCTURES_PENDING} from "../actions";
+import actions from '../actions/types';
 
 const defaultState = [];
 
 const juncturesReducer = (state = defaultState, action) => {
 	switch (action.type) {
-		case FETCH_JUNCTURES:
+		case actions.FETCH_JUNCTURES:
 			return state;
-		case FETCH_JUNCTURES_PENDING:
+		case actions.FETCH_JUNCTURES_PENDING:
 			return state;
-		case FETCH_JUNCTURES_FULFILLED:
+		case actions.FETCH_JUNCTURES_FULFILLED:
 			return action.payload.data;
 		default:
 			return state;

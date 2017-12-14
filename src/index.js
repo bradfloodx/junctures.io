@@ -9,8 +9,6 @@ import App from './components/App';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
 
-console.log('~~~ process.env', process.env);
-
 render((
 	<Provider store={store}>
 		<ConnectedRouter history={history}>
