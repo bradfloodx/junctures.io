@@ -4,13 +4,17 @@ import styled from 'styled-components';
 import {connect} from 'react-redux';
 import {push} from 'react-router-redux';
 
-const mapStateToProps = (state) => {
+import routes from '../../routes';
+
+const mapStateToProps = () => {
 	return {
 		links: [
-			{title: 'Home', path: '/'},
-			{title: 'Register', path: '/register'},
-			{title: 'Sign In', path: '/sign-in'},
-			{title: 'Edit', path: '/juncture/1/edit'}
+			routes.home,
+			routes.register,
+			routes.signIn,
+			routes.junctures,
+			routes.juncturesCreate,
+			routes.juncturesEdit
 		]
 	}
 };
