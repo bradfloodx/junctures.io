@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Switch, Route} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import Header from '../components/header/index';
+import Header from '../components/header';
 import Register from './register';
 import SignIn from './sign-in';
 import JuncturesListContainer from './list';
