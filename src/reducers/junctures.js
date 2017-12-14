@@ -1,15 +1,21 @@
 import actions from '../actions/types';
 
-const defaultState = [];
+const defaultState = {
+	collection: [],
+	edit: {}
+};
 
 const juncturesReducer = (state = defaultState, action) => {
 	switch (action.type) {
-		case actions.FETCH_JUNCTURES:
+		case actions.JUNCTURES_FETCH:
 			return state;
-		case actions.FETCH_JUNCTURES_PENDING:
+		case actions.JUNCTURES_FETCH_PENDING:
 			return state;
-		case actions.FETCH_JUNCTURES_FULFILLED:
-			return action.payload.data;
+		case actions.JUNCTURES_FETCH_FULFILLED:
+			return {
+				...state,
+				collection: action.payload.data
+			};
 		default:
 			return state;
 	}

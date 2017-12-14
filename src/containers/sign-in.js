@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {attemptSignIn} from '../actions';
+import {attemptSignIn} from '../actions/actions';
 import actions from '../actions/types';
 import AuthForm from '../components/auth/form';
 
@@ -11,10 +11,7 @@ const mapStateToProps = ({auth}) => ({...auth});
 const mapDispatchToProps = (dispatch) => ({
 	onFieldChange: (key, value) => dispatch({
 		type: actions.UPDATE_FIELD_VALUE_AUTH,
-		payload: {
-			key,
-			value
-		}
+		payload: {key, value}
 	}),
 	signIn: (username, password) =>
 		dispatch(attemptSignIn(username, password))

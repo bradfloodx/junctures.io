@@ -6,14 +6,21 @@ import JunctureForm from '../components/junctures/form';
 
 const mapStateToProps = (state) => {
 	return {
-		onSubmit: () => {},
 		juncture: {
 			name: 'Mobx',
-			dateTime: 77,
+			date: 77,
+			time: 22,
 			id: 88
 		}
 	}
 };
+
+const mapDispatchToProps = (dispatch) => ({
+	onFieldChange: () => {
+	},
+	onSubmit: () => {
+	}
+});
 
 const JunctureEditContainer = (props) => (
 	<JunctureForm
@@ -23,7 +30,17 @@ const JunctureEditContainer = (props) => (
 
 JunctureEditContainer.propTypes = {
 	onSubmit: PropTypes.func.isRequired,
-	juncture: PropTypes.object
+	// juncture: PropTypes.objectOf(
+	// 	PropTypes.shape({
+	// 		name: PropTypes.string,
+	// 		date: PropTypes.string,
+	// 		time: PropTypes.string,
+	// 		id: PropTypes.number
+	// 	})
+	// )
 };
 
-export default connect(mapStateToProps)(JunctureEditContainer);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(JunctureEditContainer);
