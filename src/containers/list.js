@@ -16,7 +16,8 @@ JuncturesListContainer.propTypes = {
 	junctures: PropTypes.arrayOf(
 		PropTypes.shape({
 			name: PropTypes.string,
-			dateTime: PropTypes.number,
+			date: PropTypes.number,
+			time: PropTypes.number,
 			id: PropTypes.number
 		})
 	)
