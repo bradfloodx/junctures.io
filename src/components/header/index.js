@@ -43,7 +43,7 @@ const NavItem = styled.li`
 
 const HeaderWrapper = ({links, go}) => (
 	<Header>
-		<span>TaN</span>
+		<span>Junctures</span>
 		<nav>
 			<NavList>
 				{links.map(({title, path}) => (
