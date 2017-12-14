@@ -8,7 +8,7 @@ import promise from 'redux-promise-middleware';
 import reducers from './reducers';
 
 const history = createHistory();
-const middleware = applyMiddleware(logger, promise(), thunk, routerMiddleware(history));
+const middleware = applyMiddleware(thunk, promise(), routerMiddleware(history), logger);
 
 const store = createStore(reducers, middleware);
 
