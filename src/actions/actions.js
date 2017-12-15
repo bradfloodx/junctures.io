@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 import {firebase, database} from '../firebase';
 import actions from './types';
 
@@ -22,9 +20,28 @@ export function watchAuthState() {
 }
 
 export function fetchJunctures() {
-	return {
-		type: actions.JUNCTURES_LIST_FETCH,
-		payload: axios.get('/mock/juncturesList.json')
+	return (dispatch, getState) => {
+		dispatch({type: actions.JUNCTURES_LIST_FETCH});
+
+		database
+			.ref(`users/${getState().user.userId}/junctures`)
+			.once('value', (snapshot) => {
+				const juncturesList = [];
+
+				snapshot.forEach((childSnapshot) => {
+					juncturesList.push({
+						...childSnapshot.val(),
+						id: childSnapshot.key
+					});
+				});
+
+				if (juncturesList.length) {
+					dispatch({
+						type: actions.JUNCTURES_LIST_FETCH_FULFILLED,
+						payload: juncturesList
+					});
+				}
+			});
 	}
 }
 

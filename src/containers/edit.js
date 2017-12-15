@@ -44,7 +44,7 @@ JunctureEditContainer.propTypes = {
 	name: PropTypes.string,
 	date: PropTypes.string,
 	time: PropTypes.string,
-	id: PropTypes.number,
+	id: PropTypes.string,
 	onSubmit: PropTypes.func.isRequired,
 };
 
