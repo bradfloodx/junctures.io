@@ -4,7 +4,7 @@ const defaultState = {
 	name: '',
 	date: '',
 	time: '',
-	id: 0
+	id: ''
 };
 
 const juncturesListReducer = (state = defaultState, action) => {

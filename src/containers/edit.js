@@ -45,7 +45,8 @@ JunctureEditContainer.propTypes = {
 	date: PropTypes.string,
 	time: PropTypes.string,
 	id: PropTypes.string,
-	onSubmit: PropTypes.func.isRequired,
+	onFieldChange: PropTypes.func.isRequired,
+	editJuncture: PropTypes.func.isRequired
 };
 
 export default connect(

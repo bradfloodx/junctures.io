@@ -10,19 +10,20 @@ const Juncture = styled.li`
 
 const displayDistance = (dateTime) => `distance to/from ${dateTime}`;
 
-const JunctureWrapper = ({name, dateTime, id}) => (
+const JunctureWrapper = ({name, dateTime, id, go}) => (
 	<Juncture>
 		<span>{name}</span>
 		<span>{dateTime}</span>
 		<span>{displayDistance(dateTime)}</span>
-		<span><a href={`/edit/${id}`}>Edit</a></span>
+		<span><button onClick={() => go(id)}>Edit</button></span>
 	</Juncture>
 );
 
 JunctureWrapper.propTypes = {
 	name: PropTypes.string,
 	dateTime: PropTypes.number,
-	id: PropTypes.string
+	id: PropTypes.string,
+	go: PropTypes.func.isRequired
 };
 
 export default JunctureWrapper;
