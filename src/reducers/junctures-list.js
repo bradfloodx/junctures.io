@@ -9,7 +9,7 @@ const juncturesListReducer = (state = defaultState, action) => {
 		case actions.JUNCTURES_LIST_FETCH_PENDING:
 			return state;
 		case actions.JUNCTURES_LIST_FETCH_FULFILLED:
-			return action.payload.data;
+			return action.payload;
 		default:
 			return state;
 	}
