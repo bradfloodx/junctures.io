@@ -1,11 +1,13 @@
 import {combineReducers} from 'redux';
 import {routerReducer} from 'react-router-redux';
 
-import junctures from './junctures';
+import juncture from './juncture';
+import juncturesList from './junctures-list';
 import auth from './auth';
 
 export default combineReducers({
 	auth,
-	junctures,
+	juncture,
+	juncturesList,
 	router: routerReducer
 });

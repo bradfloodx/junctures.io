@@ -5,8 +5,8 @@ import actions from './types';
 
 export function fetchJunctures() {
 	return {
-		type: actions.JUNCTURES_FETCH,
-		payload: axios.get('/mock/junctures.json')
+		type: actions.JUNCTURES_LIST_FETCH,
+		payload: axios.get('/mock/juncturesList.json')
 	}
 }
 
@@ -64,8 +64,14 @@ export function attemptRegister(username, password) {
 
 export function attemptCreateJuncture(juncture) {
 	return (dispatch) => {
+		console.log('~~~ juncture', juncture);
 		dispatch({type: actions.JUNCTURE_CREATE});
+	}
+}
 
-
+export function attemptEditJuncture(juncture) {
+	return (dispatch) => {
+		console.log('~~~ juncture', juncture);
+		dispatch({type: actions.JUNCTURE_EDIT});
 	}
 }

@@ -13,14 +13,14 @@ export default {
 	},
 	juncturesCreate: {
 		title: 'Create',
-		path: '/junctures/new'
+		path: '/juncturesList/new'
 	},
 	junctures: {
 		title: 'Junctures',
-		path: '/junctures'
+		path: '/juncturesList'
 	},
 	juncturesEdit: {
 		title: 'Edit',
-		path: '/junctures/1/edit'
+		path: '/juncturesList/1/edit'
 	}
 };
