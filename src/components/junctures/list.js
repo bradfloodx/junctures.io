@@ -10,7 +10,7 @@ const JuncturesList = styled.main`
 	justify-content: space-between;
 `;
 
-const JuncturesListWrapper = ({junctures}) => (
+const JuncturesListWrapper = ({junctures, go}) => (
 	<JuncturesList>
 		<ol>
 			{junctures.map(({name, date, time, id}) => (
@@ -19,6 +19,7 @@ const JuncturesListWrapper = ({junctures}) => (
 					date={date}
 					time={time}
 					id={id}
+					go={go}
 					key={id}
 				/>
 			))}
@@ -34,7 +35,8 @@ JuncturesListWrapper.propTypes = {
 			time: PropTypes.string,
 			id: PropTypes.string
 		})
-	)
+	),
+	go: PropTypes.func.isRequired
 };
 
 export default JuncturesListWrapper;
