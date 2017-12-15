@@ -15,6 +15,12 @@ const juncturesListReducer = (state = defaultState, action) => {
 				[action.payload.key]:
 					action.payload.value
 			};
+		case actions.JUNCTURE_CREATE:
+			return state;
+		case actions.JUNCTURE_CREATE_FULFILLED:
+			return state;
+		case actions.JUNCTURE_CREATE_ERROR:
+			return state;
 		default:
 			return state;
 	}

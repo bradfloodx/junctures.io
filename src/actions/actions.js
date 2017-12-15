@@ -3,6 +3,24 @@ import axios from 'axios';
 import {firebase, database} from '../firebase';
 import actions from './types';
 
+export function watchAuthState() {
+	return (dispatch) => {
+		firebase.auth().onAuthStateChanged((user) => {
+			if (user) {
+				dispatch({
+					type: actions.USER_AUTHENTICATED,
+					payload: {
+						username: user.email,
+						userId: user.uid
+					}
+				});
+			} else {
+				dispatch({type: actions.USER_NOT_AUTHENTICATED});
+			}
+		});
+	}
+}
+
 export function fetchJunctures() {
 	return {
 		type: actions.JUNCTURES_LIST_FETCH,
@@ -18,10 +36,13 @@ export function attemptSignIn(username, password) {
 			.signInWithEmailAndPassword(username, password)
 			.then((user) => {
 				dispatch({
-					type: actions.AUTH_ATTEMPT_SIGNIN_FULFILLED,
+					type: actions.AUTH_ATTEMPT_SIGNIN_FULFILLED
+				});
+				dispatch({
+					type: actions.USER_AUTHENTICATED,
 					payload: {
 						username: user.email,
-						uid: user.uid
+						userId: user.uid
 					}
 				});
 			})
@@ -63,9 +84,21 @@ export function attemptRegister(username, password) {
 }
 
 export function attemptCreateJuncture(juncture) {
-	return (dispatch) => {
-		console.log('~~~ juncture', juncture);
+	return (dispatch, getState) => {
 		dispatch({type: actions.JUNCTURE_CREATE});
+
+		database
+			.ref(`users/${getState().user.userId}/junctures`)
+			.push(juncture)
+			.then(() => {
+				dispatch({type: actions.JUNCTURE_CREATE_FULFILLED});
+			})
+			.catch((error) => {
+				dispatch({
+					type: actions.JUNCTURE_CREATE_ERROR,
+					payload: error.message
+				});
+			});
 	}
 }
 
