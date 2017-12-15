@@ -6,9 +6,7 @@ import {attemptCreateJuncture} from '../actions/actions';
 import actions from '../actions/types';
 import JunctureForm from '../components/junctures/form';
 
-const mapStateToProps = ({junctures}) => ({
-	juncture: junctures.edit
-});
+const mapStateToProps = ({juncture}) => ({...juncture});
 
 const mapDispatchToProps = (dispatch) => ({
 	onFieldChange: (key, value) => dispatch({
@@ -32,7 +30,9 @@ const JunctureCreateContainer = (props) => {
 
 	return (
 		<JunctureForm
-			juncture={props.juncture}
+			name={props.name}
+			date={props.date}
+			time={props.time}
 			onFieldChange={props.onFieldChange}
 			onSubmit={onSubmit}
 		/>
@@ -40,15 +40,11 @@ const JunctureCreateContainer = (props) => {
 };
 
 JunctureCreateContainer.propTypes = {
-	juncture: PropTypes.objectOf(
-		PropTypes.shape({
-			name: PropTypes.string,
-			date: PropTypes.string,
-			time: PropTypes.string,
-		})
-	),
+	name: PropTypes.string,
+	date: PropTypes.string,
+	time: PropTypes.string,
 	onFieldChange: PropTypes.func.isRequired,
-	createJuncture: PropTypes.func.isRequired,
+	createJuncture: PropTypes.func.isRequired
 };
 
 export default connect(

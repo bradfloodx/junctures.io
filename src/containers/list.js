@@ -4,20 +4,20 @@ import {connect} from 'react-redux';
 
 import JuncturesList from '../components/junctures/list';
 
-const mapStateToProps = ({junctures}) => ({junctures});
+const mapStateToProps = ({juncturesList}) => ({juncturesList});
 
-const JuncturesListContainer = ({junctures}) => (
+const JuncturesListContainer = ({juncturesList}) => (
 	<JuncturesList
-		junctures={junctures}
+		junctures={juncturesList}
 	/>
 );
 
 JuncturesListContainer.propTypes = {
-	junctures: PropTypes.arrayOf(
+	juncturesList: PropTypes.arrayOf(
 		PropTypes.shape({
 			name: PropTypes.string,
-			date: PropTypes.number,
-			time: PropTypes.number,
+			date: PropTypes.string,
+			time: PropTypes.string,
 			id: PropTypes.number
 		})
 	)

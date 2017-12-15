@@ -3,41 +3,49 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import JunctureForm from '../components/junctures/form';
+import {attemptEditJuncture} from "../actions/actions";
+import actions from "../actions/types";
 
-const mapStateToProps = (state) => {
-	return {
-		juncture: {
-			name: 'Mobx',
-			date: 77,
-			time: 22,
-			id: 88
-		}
-	}
-};
+const mapStateToProps = ({juncture}) => ({...juncture});
 
 const mapDispatchToProps = (dispatch) => ({
-	onFieldChange: () => {
-	},
-	onSubmit: () => {
+	onFieldChange: (key, value) => dispatch({
+		type: actions.JUNCTURE_UPDATE_FIELD,
+		payload: {key, value}
+	}),
+	editJuncture: (juncture) => {
+		dispatch(attemptEditJuncture(juncture))
 	}
 });
 
-const JunctureEditContainer = (props) => (
-	<JunctureForm
-		{...props}
-	/>
-);
+const JunctureEditContainer = (props) => {
+	const onSubmit = (event) => {
+		event.preventDefault();
+		props.editJuncture({
+			name: props.name,
+			date: props.date,
+			time: props.time,
+			id: props.id
+		});
+	};
+
+	return (
+		<JunctureForm
+			name={props.name}
+			date={props.date}
+			time={props.time}
+			onFieldChange={props.onFieldChange}
+			onSubmit={onSubmit}
+		/>
+	)
+};
 
 JunctureEditContainer.propTypes = {
+	name: PropTypes.string,
+	date: PropTypes.string,
+	time: PropTypes.string,
+	id: PropTypes.number,
 	onSubmit: PropTypes.func.isRequired,
-	// juncture: PropTypes.objectOf(
-	// 	PropTypes.shape({
-	// 		name: PropTypes.string,
-	// 		date: PropTypes.string,
-	// 		time: PropTypes.string,
-	// 		id: PropTypes.number
-	// 	})
-	// )
 };
 
 export default connect(

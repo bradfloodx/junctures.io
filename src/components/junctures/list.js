@@ -13,10 +13,11 @@ const JuncturesList = styled.main`
 const JuncturesListWrapper = ({junctures}) => (
 	<JuncturesList>
 		<ol>
-			{junctures.map(({name, dateTime, id}) => (
+			{junctures.map(({name, date, time, id}) => (
 				<Juncture
 					name={name}
-					dateTime={dateTime}
+					date={date}
+					time={time}
 					id={id}
 					key={id}
 				/>
@@ -29,7 +30,8 @@ JuncturesListWrapper.propTypes = {
 	junctures: PropTypes.arrayOf(
 		PropTypes.shape({
 			name: PropTypes.string,
-			dateTime: PropTypes.number,
+			date: PropTypes.string,
+			time: PropTypes.string,
 			id: PropTypes.number
 		})
 	)

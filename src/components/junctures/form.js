@@ -6,15 +6,16 @@ const JunctureForm = styled.form`
 	padding: 1rem;
 `;
 
-const JunctureFormWrapper = ({onFieldChange, onSubmit, juncture}) => (
+const JunctureFormWrapper = ({onFieldChange, onSubmit, name, date, time}) => (
 	<JunctureForm onSubmit={onSubmit}>
-		{juncture.name && <h1>{juncture.name}</h1>}
+		<h3>{name}</h3>
 		<label>
 			<span>Name</span>
 			<input
 				type="text"
+				name="name"
 				placeholder="Name..."
-				value={juncture.name}
+				value={name}
 				onChange={(event) => {
 					onFieldChange(event.target.name, event.target.value)
 				}}
@@ -24,7 +25,8 @@ const JunctureFormWrapper = ({onFieldChange, onSubmit, juncture}) => (
 			<span>Date</span>
 			<input
 				type="date"
-				value={juncture.date}
+				name="date"
+				value={date}
 				onChange={(event) => {
 					onFieldChange(event.target.name, event.target.value)
 				}}
@@ -34,7 +36,8 @@ const JunctureFormWrapper = ({onFieldChange, onSubmit, juncture}) => (
 			<span>Time</span>
 			<input
 				type="time"
-				value={juncture.time}
+				name="time"
+				value={time}
 				onChange={(event) => {
 					onFieldChange(event.target.name, event.target.value)
 				}}
@@ -45,15 +48,10 @@ const JunctureFormWrapper = ({onFieldChange, onSubmit, juncture}) => (
 );
 
 JunctureFormWrapper.propTypes = {
-	onSubmit: PropTypes.func.isRequired,
-	// juncture: PropTypes.objectOf(
-	// 	PropTypes.shape({
-	// 		name: PropTypes.string,
-	// 		date: PropTypes.string,
-	// 		time: PropTypes.string,
-	// 		id: PropTypes.number
-	// 	})
-	// )
+	name: PropTypes.string,
+	date: PropTypes.string,
+	time: PropTypes.string,
+	onSubmit: PropTypes.func.isRequired
 };
 
 export default JunctureFormWrapper;
