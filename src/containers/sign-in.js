@@ -10,7 +10,7 @@ const mapStateToProps = ({auth}) => ({...auth});
 
 const mapDispatchToProps = (dispatch) => ({
 	onFieldChange: (key, value) => dispatch({
-		type: actions.UPDATE_FIELD_VALUE_AUTH,
+		type: actions.AUTH_UPDATE_FIELD_VALUE,
 		payload: {key, value}
 	}),
 	signIn: (username, password) =>

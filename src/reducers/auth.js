@@ -7,7 +7,7 @@ const defaultState = {
 
 const authReducer = (state = defaultState, action) => {
 	switch (action.type) {
-		case actions.UPDATE_FIELD_VALUE_AUTH:
+		case actions.AUTH_UPDATE_FIELD_VALUE:
 			return {
 				...state,
 				[action.payload.key]:

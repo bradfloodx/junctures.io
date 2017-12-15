@@ -8,7 +8,10 @@ import SignIn from './sign-in';
 import JuncturesCreate from './create';
 import JuncturesList from './list';
 import JuncturesEdit from './edit';
-import {fetchJunctures} from '../actions/actions';
+import {
+	watchAuthState,
+	fetchJunctures
+} from '../actions/actions';
 import routes from '../routes';
 
 const Home = () => (
@@ -18,11 +21,13 @@ const Home = () => (
 const mapStateToProps = ({router}) => ({router});
 
 const mapDispatchToProps = (dispatch) => ({
-	getData: () => dispatch(fetchJunctures())
+	getData: () => dispatch(fetchJunctures()),
+	watchAuthState: () => dispatch(watchAuthState())
 });
 
 class App extends Component {
 	componentDidMount() {
+		this.props.watchAuthState();
 		this.props.getData();
 	}
 
