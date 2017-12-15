@@ -18,17 +18,25 @@ const Home = () => (
 	<p>Home</p>
 );
 
-const mapStateToProps = ({router}) => ({router});
+const mapStateToProps = ({router, user}) => ({
+	router,
+	userIsAuthenticated: user.authenticated
+});
 
 const mapDispatchToProps = (dispatch) => ({
-	getData: () => dispatch(fetchJunctures()),
+	getJunctures: () => dispatch(fetchJunctures()),
 	watchAuthState: () => dispatch(watchAuthState())
 });
 
 class App extends Component {
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.userIsAuthenticated) {
+			this.props.getJunctures();
+		}
+	}
+
 	componentDidMount() {
 		this.props.watchAuthState();
-		this.props.getData();
 	}
 
 	render() {

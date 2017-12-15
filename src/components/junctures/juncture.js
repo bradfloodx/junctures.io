@@ -22,7 +22,7 @@ const JunctureWrapper = ({name, dateTime, id}) => (
 JunctureWrapper.propTypes = {
 	name: PropTypes.string,
 	dateTime: PropTypes.number,
-	id: PropTypes.number
+	id: PropTypes.string
 };
 
 export default JunctureWrapper;
