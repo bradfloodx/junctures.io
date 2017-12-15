@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 class App extends Component {
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.userIsAuthenticated) {
+		if (nextProps.userIsAuthenticated && !this.props.userIsAuthenticated) {
 			this.props.getJunctures();
 		}
 	}
