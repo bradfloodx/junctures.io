@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
@@ -14,32 +14,40 @@ const mapDispatchToProps = (dispatch) => ({
 		payload: {key, value}
 	}),
 	signIn: (username, password) =>
-		dispatch(attemptSignIn(username, password))
+		dispatch(attemptSignIn(username, password)),
+	unload: () => dispatch({type: actions.AUTH_UNLOAD})
 });
 
-const SignInWrapper = (props) => {
-	const onSubmit = (event) => {
-		event.preventDefault();
-		props.signIn(
-			props.username,
-			props.password
-		);
-	};
+class SignInWrapper extends Component {
+	componentWillUnmount() {
+		this.props.unload();
+	}
 
-	return (
-		<AuthForm
-			title={'Sign In'}
-			onSubmit={onSubmit}
-			onFieldChange={props.onFieldChange}
-			username={props.username}
-			password={props.password}
-		/>
-	)
-};
+	render() {
+		const onSubmit = (event) => {
+			event.preventDefault();
+			this.props.signIn(
+				this.props.username,
+				this.props.password
+			);
+		};
+
+		return (
+			<AuthForm
+				title={'Sign In'}
+				onSubmit={onSubmit}
+				onFieldChange={this.props.onFieldChange}
+				username={this.props.username}
+				password={this.props.password}
+			/>
+		)
+	}
+}
 
 SignInWrapper.propTypes = {
 	onFieldChange: PropTypes.func.isRequired,
-	signIn: PropTypes.func.isRequired
+	signIn: PropTypes.func.isRequired,
+	unload: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInWrapper);
