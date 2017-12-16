@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
@@ -17,30 +17,38 @@ const mapDispatchToProps = (dispatch) => ({
 		}
 	}),
 	register: (username, password) =>
-		dispatch(attemptRegister(username, password))
+		dispatch(attemptRegister(username, password)),
+	unload: () => dispatch({type: actions.AUTH_UNLOAD})
 });
 
-const RegisterWrapper = (props) => {
-	const onSubmit = (event) => {
-		event.preventDefault();
-		props.register(
-			props.username,
-			props.password
-		);
-	};
+class RegisterWrapper extends Component {
+	componentWillUnmount() {
+		this.props.unload();
+	}
 
-	return (
-		<AuthForm
-			title={'Register'}
-			onSubmit={onSubmit}
-			onFieldChange={props.onFieldChange}
-			username={props.username}
-			password={props.password}
-		/>
-	)
+	render() {
+		const onSubmit = (event) => {
+			event.preventDefault();
+			this.props.register(
+				this.props.username,
+				this.props.password
+			);
+		};
+
+		return (
+			<AuthForm
+				title={'Register'}
+				onSubmit={onSubmit}
+				onFieldChange={this.props.onFieldChange}
+				username={this.props.username}
+				password={this.props.password}
+			/>
+		)
+	}
 };
 
 RegisterWrapper.propTypes = {
+	unload: PropTypes.func.isRequired,
 	onFieldChange: PropTypes.func.isRequired,
 	register: PropTypes.func.isRequired
 };

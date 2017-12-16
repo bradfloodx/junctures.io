@@ -13,25 +13,20 @@ const authReducer = (state = defaultState, action) => {
 				[action.payload.key]:
 					action.payload.value
 			};
-
 		case actions.AUTH_ATTEMPT_REGISTER:
 			return state;
-
 		case actions.AUTH_ATTEMPT_REGISTER_FULFILLED:
 			return state;
-
 		case actions.AUTH_ATTEMPT_REGISTER_ERROR:
 			return state;
-
 		case actions.AUTH_ATTEMPT_SIGNIN:
 			return state;
-
 		case actions.AUTH_ATTEMPT_SIGNIN_FULFILLED:
 			return state;
-
 		case actions.AUTH_ATTEMPT_SIGNIN_ERROR:
 			return state;
-
+		case actions.AUTH_UNLOAD:
+			return defaultState;
 		default:
 			return state;
 	}
