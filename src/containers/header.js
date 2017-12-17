@@ -13,8 +13,7 @@ const mapStateToProps = () => {
 			routes.register,
 			routes.signIn,
 			routes.juncturesCreate,
-			routes.junctures,
-			routes.juncturesEdit
+			routes.junctures
 		]
 	}
 };
