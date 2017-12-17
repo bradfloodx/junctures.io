@@ -1,44 +1,60 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import JunctureForm from '../components/junctures/form';
-import {attemptEditJuncture} from "../actions/actions";
+import {
+	attemptEditJuncture,
+	fetchJunctureById
+} from "../actions/actions";
 import actions from "../actions/types";
 
-const mapStateToProps = ({juncture}) => ({...juncture});
+const mapStateToProps = ({juncture}, {match: {params: {id} = ''} = {}}) => ({
+	...juncture,
+	id
+});
 
 const mapDispatchToProps = (dispatch) => ({
 	onFieldChange: (key, value) => dispatch({
 		type: actions.JUNCTURE_UPDATE_FIELD,
 		payload: {key, value}
 	}),
-	editJuncture: (juncture) => {
-		dispatch(attemptEditJuncture(juncture))
+	fetchJuncture: (id) =>
+		dispatch(fetchJunctureById(id)),
+	editJuncture: (juncture, id) => {
+		dispatch(attemptEditJuncture(juncture, id))
 	}
 });
 
-const JunctureEditContainer = (props) => {
-	const onSubmit = (event) => {
-		event.preventDefault();
-		props.editJuncture({
-			name: props.name,
-			date: props.date,
-			time: props.time,
-			id: props.id
-		});
-	};
+class JunctureEditContainer extends Component {
+	componentDidMount() {
+		if (!this.props.fetched) {
+			this.props.fetchJuncture(this.props.id);
+		}
+	}
 
-	return (
-		<JunctureForm
-			name={props.name}
-			date={props.date}
-			time={props.time}
-			onFieldChange={props.onFieldChange}
-			onSubmit={onSubmit}
-		/>
-	)
-};
+	render() {
+		const juncture = {
+				name: this.props.name,
+				date: this.props.date,
+				time: this.props.time
+		};
+
+		const onSubmit = (event) => {
+			event.preventDefault();
+			this.props.editJuncture(juncture, this.props.id);
+		};
+
+		return (
+			<JunctureForm
+				{...juncture}
+				onFieldChange={this.props.onFieldChange}
+				onSubmit={onSubmit}
+			/>
+		)
+	}
+
+}
 
 JunctureEditContainer.propTypes = {
 	name: PropTypes.string,
