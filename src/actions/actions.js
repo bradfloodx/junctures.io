@@ -119,9 +119,43 @@ export function attemptCreateJuncture(juncture) {
 	}
 }
 
-export function attemptEditJuncture(juncture) {
-	return (dispatch) => {
-		console.log('~~~ juncture', juncture);
+export function fetchJunctureById(id) {
+		return (dispatch, getState) => {
+		dispatch({type: actions.JUNCTURE_FETCH_BY_ID});
+
+		database
+			.ref(`users/${getState().user.userId}/junctures/${id}`)
+			.once('value')
+			.then((snapshot) =>
+				dispatch({
+					type: actions.JUNCTURE_FETCH_BY_ID_FULFILLED,
+					payload: snapshot.val()
+				})
+			)
+			.catch((error) =>
+				dispatch({
+					type: actions.JUNCTURE_FETCH_BY_ID_ERROR,
+					payload: error.message
+				})
+			)
+	}
+}
+
+export function attemptEditJuncture(juncture, id) {
+	return (dispatch, getState) => {
 		dispatch({type: actions.JUNCTURE_EDIT});
+
+		database
+			.ref(`users/${getState().user.userId}/junctures/${id}`)
+			.set(juncture)
+			.then(() => {
+				dispatch({type: actions.JUNCTURE_EDIT_FULFILLED});
+			})
+			.catch((error) => {
+				dispatch({
+					type: actions.JUNCTURE_EDIT_ERROR,
+					payload: error.message
+				});
+			});
 	}
 }
