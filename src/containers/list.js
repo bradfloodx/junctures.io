@@ -6,28 +6,23 @@ import {push} from 'react-router-redux';
 import JuncturesList from '../components/junctures/list';
 import {buildJuncturesEditRoute} from '../routes';
 
-const mapStateToProps = ({juncturesList}) => ({juncturesList});
+const mapStateToProps = ({juncturesList}) => ({
+	junctures: juncturesList.toArray()
+});
 
 const mapDistpatchToProps = (dispatch) => ({
 	go: (id) => dispatch(push(buildJuncturesEditRoute(id)))
 });
 
-const JuncturesListContainer = ({juncturesList, go}) => (
+const JuncturesListContainer = ({junctures, go}) => (
 	<JuncturesList
-		junctures={juncturesList}
+		junctures={junctures}
 		go={go}
 	/>
 );
 
 JuncturesListContainer.propTypes = {
-	juncturesList: PropTypes.arrayOf(
-		PropTypes.shape({
-			name: PropTypes.string,
-			date: PropTypes.string,
-			time: PropTypes.string,
-			id: PropTypes.string
-		})
-	),
+	// junctures: // Map class
 	go: PropTypes.func.isRequired
 };
 
