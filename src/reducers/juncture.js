@@ -3,8 +3,7 @@ import actions from '../actions/types';
 const defaultState = {
 	name: '',
 	date: '',
-	time: '',
-	id: ''
+	time: ''
 };
 
 const juncturesListReducer = (state = defaultState, action) => {
@@ -21,6 +20,8 @@ const juncturesListReducer = (state = defaultState, action) => {
 			return state;
 		case actions.JUNCTURE_CREATE_ERROR:
 			return state;
+		case actions.JUNCTURE_FETCH_BY_ID_FULFILLED:
+			return {...action.payload, fetched: true};
 		default:
 			return state;
 	}
