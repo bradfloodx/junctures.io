@@ -6,13 +6,18 @@ const JunctureForm = styled.form`
 	padding: 1rem;
 `;
 
+const Label = styled.label`
+	display: flex;
+	margin: 1em;
+`;
+
 const JunctureFormWrapper = ({onFieldChange, onSubmit, name, date, time}) => {
 	const onChange = ({target: {name, value}}) => onFieldChange(name, value);
 
 	return (
 		<JunctureForm onSubmit={onSubmit}>
 			<h3>{name}</h3>
-			<label>
+			<Label>
 				<span>Name</span>
 				<input
 					type="text"
@@ -21,8 +26,8 @@ const JunctureFormWrapper = ({onFieldChange, onSubmit, name, date, time}) => {
 					value={name}
 					onChange={onChange}
 				/>
-			</label>
-			<label>
+			</Label>
+			<Label>
 				<span>Date</span>
 				<input
 					type="date"
@@ -30,8 +35,8 @@ const JunctureFormWrapper = ({onFieldChange, onSubmit, name, date, time}) => {
 					value={date}
 					onChange={onChange}
 				/>
-			</label>
-			<label>
+			</Label>
+			<Label>
 				<span>Time</span>
 				<input
 					type="time"
@@ -39,7 +44,7 @@ const JunctureFormWrapper = ({onFieldChange, onSubmit, name, date, time}) => {
 					value={time}
 					onChange={onChange}
 				/>
-			</label>
+			</Label>
 			<button type="submit">Go!</button>
 		</JunctureForm>
 	)
