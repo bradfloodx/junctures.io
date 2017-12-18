@@ -6,6 +6,8 @@
     "firebase": "^4.8.0",
     "history": "^4.7.2",
     "immutable": "^3.8.2",
+    "moment": "^2.20.0",
+    "moment-precise-range-plugin": "^1.2.4",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",

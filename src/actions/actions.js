@@ -161,6 +161,7 @@ export function fetchJunctureById (id) {
 	return (dispatch, getState) => {
 		dispatch({ type: actions.JUNCTURE_FETCH_BY_ID });
 
+		// TODO: .off() listener on de-authentication?
 		database
 			.ref(`users/${getState().user.userId}/junctures/${id}`)
 			.once('value')
