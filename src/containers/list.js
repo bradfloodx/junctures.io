@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {push} from 'react-router-redux';
 
 import JuncturesList from '../components/junctures/list';
-import {buildJuncturesEditRoute} from '../routes';
+import {goToJunctureEdit} from '../actions/actions';
 
 const mapStateToProps = ({juncturesList}) => ({
 	junctures: juncturesList.toArray()
 });
 
 const mapDistpatchToProps = (dispatch) => ({
-	go: (id) => dispatch(push(buildJuncturesEditRoute(id)))
+	go: (id) => dispatch(goToJunctureEdit(id))
 });
 
 const JuncturesListContainer = ({junctures, go}) => (
@@ -22,7 +21,7 @@ const JuncturesListContainer = ({junctures, go}) => (
 );
 
 JuncturesListContainer.propTypes = {
-	// junctures: // Map class
+	junctures: PropTypes.array.isRequired,
 	go: PropTypes.func.isRequired
 };
 

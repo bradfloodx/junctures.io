@@ -1,7 +1,10 @@
-import {firebase, database} from '../firebase';
-import actions from './types';
+import { push } from 'react-router-redux';
 
-export function watchAuthState() {
+import { firebase, database } from '../firebase';
+import actions from './types';
+import { buildJuncturesEditRoute } from '../routes';
+
+export function watchAuthState () {
 	return (dispatch) => {
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user) {
@@ -13,15 +16,15 @@ export function watchAuthState() {
 					}
 				});
 			} else {
-				dispatch({type: actions.USER_NOT_AUTHENTICATED});
+				dispatch({ type: actions.USER_NOT_AUTHENTICATED });
 			}
 		});
 	}
 }
 
-export function fetchAndWatchJunctures() {
+export function fetchAndWatchJunctures () {
 	return (dispatch, getState) => {
-		dispatch({type: actions.JUNCTURES_LIST_VALUE});
+		dispatch({ type: actions.JUNCTURES_LIST_VALUE });
 
 		database
 			.ref(`users/${getState().user.userId}/junctures`)
@@ -45,9 +48,9 @@ export function fetchAndWatchJunctures() {
 	}
 }
 
-export function attemptSignIn(username, password) {
+export function attemptSignIn (username, password) {
 	return (dispatch) => {
-		dispatch({type: actions.AUTH_ATTEMPT_SIGNIN});
+		dispatch({ type: actions.AUTH_ATTEMPT_SIGNIN });
 
 		firebase.auth()
 			.signInWithEmailAndPassword(username, password)
@@ -72,16 +75,16 @@ export function attemptSignIn(username, password) {
 	}
 }
 
-export function attemptRegister(username, password) {
+export function attemptRegister (username, password) {
 	return (dispatch) => {
-		dispatch({type: actions.AUTH_ATTEMPT_REGISTER});
+		dispatch({ type: actions.AUTH_ATTEMPT_REGISTER });
 
 		firebase.auth()
 			.createUserWithEmailAndPassword(username, password)
 			.then((user) => {
 				database
 					.ref(`users/${user.uid}`)
-					.set({username: user.email});
+					.set({ username: user.email });
 
 				dispatch({
 					type: actions.AUTH_ATTEMPT_REGISTER_FULFILLED,
@@ -100,15 +103,15 @@ export function attemptRegister(username, password) {
 	}
 }
 
-export function attemptCreateJuncture(juncture) {
+export function attemptCreateJuncture (juncture) {
 	return (dispatch, getState) => {
-		dispatch({type: actions.JUNCTURE_CREATE});
+		dispatch({ type: actions.JUNCTURE_CREATE });
 
 		database
 			.ref(`users/${getState().user.userId}/junctures`)
 			.push(juncture)
 			.then(() => {
-				dispatch({type: actions.JUNCTURE_CREATE_FULFILLED});
+				dispatch({ type: actions.JUNCTURE_CREATE_FULFILLED });
 			})
 			.catch((error) => {
 				dispatch({
@@ -119,9 +122,24 @@ export function attemptCreateJuncture(juncture) {
 	}
 }
 
-export function fetchJunctureById(id) {
-		return (dispatch, getState) => {
-		dispatch({type: actions.JUNCTURE_FETCH_BY_ID});
+export function redirectTo (path) {
+	return (dispatch) => {
+		dispatch(push(path));
+		dispatch({ type: actions.REDIRECTED });
+	}
+}
+
+export function goToJunctureEdit (id) {
+	return (dispatch) =>
+		dispatch({
+			type: actions.GOTO,
+			payload: buildJuncturesEditRoute(id)
+		});
+}
+
+export function fetchJunctureById (id) {
+	return (dispatch, getState) => {
+		dispatch({ type: actions.JUNCTURE_FETCH_BY_ID });
 
 		database
 			.ref(`users/${getState().user.userId}/junctures/${id}`)
@@ -141,15 +159,15 @@ export function fetchJunctureById(id) {
 	}
 }
 
-export function attemptEditJuncture(juncture, id) {
+export function attemptEditJuncture (juncture, id) {
 	return (dispatch, getState) => {
-		dispatch({type: actions.JUNCTURE_EDIT});
+		dispatch({ type: actions.JUNCTURE_EDIT });
 
 		database
 			.ref(`users/${getState().user.userId}/junctures/${id}`)
 			.set(juncture)
 			.then(() => {
-				dispatch({type: actions.JUNCTURE_EDIT_FULFILLED});
+				dispatch({ type: actions.JUNCTURE_EDIT_FULFILLED });
 			})
 			.catch((error) => {
 				dispatch({
