@@ -23,9 +23,9 @@ const NavItem = styled.li`
 	}
 `;
 
-const HeaderWrapper = ({links, go}) => (
+const HeaderWrapper = ({links}) => (
 	<Header>
-		<span>Junctures</span>
+		<Link to="/">Junctures</Link>
 		<nav>
 			<NavList>
 				{links.map(({title, path}) => (
@@ -44,8 +44,7 @@ HeaderWrapper.propTypes = {
 			title: PropTypes.string,
 			path: PropTypes.string
 		})
-	).isRequired,
-	go: PropTypes.func
+	).isRequired
 };
 
 export default HeaderWrapper;

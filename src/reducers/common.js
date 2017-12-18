@@ -1,7 +1,9 @@
 import actions from '../actions/types';
 import routes from '../routes';
 
-const defaultState = {};
+const defaultState = {
+	redirectTo: null
+};
 
 const commonReducer = (state = defaultState, action) => {
 	switch (action.type) {
@@ -26,6 +28,11 @@ const commonReducer = (state = defaultState, action) => {
 			return {
 				...state,
 				redirectTo: routes.junctures.path
+			};
+		case actions.AUTH_SIGN_OUT_FULFILLED:
+			return {
+				...state,
+				redirectTo: routes.home.path
 			};
 		default:
 			return state;

@@ -103,6 +103,26 @@ export function attemptRegister (username, password) {
 	}
 }
 
+export function signOut () {
+	return (dispatch) => {
+		dispatch({ type: actions.AUTH_SIGN_OUT });
+
+		firebase.auth()
+			.signOut()
+			.then(() => {
+				dispatch({
+					type: actions.AUTH_SIGN_OUT_FULFILLED
+				});
+			})
+			.catch((error) => {
+				dispatch({
+					type: actions.AUTH_SIGN_OUT_FAILED,
+					payload: error.message
+				});
+			});
+	}
+}
+
 export function attemptCreateJuncture (juncture) {
 	return (dispatch, getState) => {
 		dispatch({ type: actions.JUNCTURE_CREATE });
