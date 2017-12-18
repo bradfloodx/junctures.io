@@ -1,4 +1,10 @@
 const types = {
+
+	GOTO:
+		'GOTO',
+	REDIRECTED:
+		'REDIRECTED',
+
 	AUTH_UPDATE_FIELD_VALUE:
 		'AUTH_UPDATE_FIELD_VALUE',
 

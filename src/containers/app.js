@@ -10,7 +10,8 @@ import JuncturesList from './list';
 import JuncturesEdit from './edit';
 import {
 	watchAuthState,
-	fetchAndWatchJunctures
+	fetchAndWatchJunctures,
+	redirectTo
 } from '../actions/actions';
 import routes from '../routes';
 
@@ -18,18 +19,24 @@ const Home = () => (
 	<p>Home</p>
 );
 
-const mapStateToProps = ({router, user}) => ({
+const mapStateToProps = ({router, user, common}) => ({
 	router,
+	redirectTo: common.redirectTo,
 	userIsAuthenticated: user.authenticated
 });
 
 const mapDispatchToProps = (dispatch) => ({
 	getJunctures: () => dispatch(fetchAndWatchJunctures()),
-	watchAuthState: () => dispatch(watchAuthState())
+	watchAuthState: () => dispatch(watchAuthState()),
+	redirect: (path) => dispatch(redirectTo(path))
 });
 
 class App extends Component {
 	componentWillReceiveProps(nextProps) {
+		if(nextProps.redirectTo) {
+			this.props.redirect(nextProps.redirectTo);
+		}
+
 		if (nextProps.userIsAuthenticated && !this.props.userIsAuthenticated) {
 			this.props.getJunctures();
 		}
