@@ -10,7 +10,7 @@ import JuncturesList from './list';
 import JuncturesEdit from './edit';
 import {
 	watchAuthState,
-	fetchJunctures
+	fetchAndWatchJunctures
 } from '../actions/actions';
 import routes from '../routes';
 
@@ -24,7 +24,7 @@ const mapStateToProps = ({router, user}) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	getJunctures: () => dispatch(fetchJunctures()),
+	getJunctures: () => dispatch(fetchAndWatchJunctures()),
 	watchAuthState: () => dispatch(watchAuthState())
 });
 
