@@ -23,7 +23,8 @@ const mapDispatchToProps = (dispatch) => ({
 		dispatch(fetchJunctureById(id)),
 	editJuncture: (juncture, id) => {
 		dispatch(attemptEditJuncture(juncture, id))
-	}
+	},
+	unload: () => dispatch({type: actions.JUNCTURE_UPDATE_UNLOAD})
 });
 
 class JunctureEditContainer extends Component {
@@ -31,6 +32,10 @@ class JunctureEditContainer extends Component {
 		if (!this.props.fetched) {
 			this.props.fetchJuncture(this.props.id);
 		}
+	}
+
+	componentWillUnmount() {
+		this.props.unload();
 	}
 
 	render() {
@@ -51,7 +56,7 @@ class JunctureEditContainer extends Component {
 				onFieldChange={this.props.onFieldChange}
 				onSubmit={onSubmit}
 			/>
-		)
+		);
 	}
 
 }
@@ -62,7 +67,8 @@ JunctureEditContainer.propTypes = {
 	time: PropTypes.string,
 	id: PropTypes.string,
 	onFieldChange: PropTypes.func.isRequired,
-	editJuncture: PropTypes.func.isRequired
+	editJuncture: PropTypes.func.isRequired,
+	unload: PropTypes.func.isRequired
 };
 
 export default connect(
