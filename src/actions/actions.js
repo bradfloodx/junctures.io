@@ -19,13 +19,13 @@ export function watchAuthState() {
 	}
 }
 
-export function fetchJunctures() {
+export function fetchAndWatchJunctures() {
 	return (dispatch, getState) => {
-		dispatch({type: actions.JUNCTURES_LIST_FETCH});
+		dispatch({type: actions.JUNCTURES_LIST_VALUE});
 
 		database
 			.ref(`users/${getState().user.userId}/junctures`)
-			.once('value', (snapshot) => {
+			.on('value', (snapshot) => {
 				const juncturesList = [];
 
 				snapshot.forEach((childSnapshot) => {
@@ -37,7 +37,7 @@ export function fetchJunctures() {
 
 				if (juncturesList.length) {
 					dispatch({
-						type: actions.JUNCTURES_LIST_FETCH_FULFILLED,
+						type: actions.JUNCTURES_LIST_VALUE_FULFILLED,
 						payload: juncturesList
 					});
 				}
