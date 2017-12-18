@@ -10,10 +10,10 @@ const mapStateToProps = ({ user }) => ({
 });
 
 const HeaderContainer = ({ userAuthenticated }) => {
-	const links = [ routes.home ];
+	const links = [];
 
 	if (userAuthenticated) {
-		links.push(routes.juncturesCreate, routes.junctures);
+		links.push(routes.juncturesCreate, routes.junctures, routes.signOut);
 	} else {
 		links.push(routes.register, routes.signIn);
 	}

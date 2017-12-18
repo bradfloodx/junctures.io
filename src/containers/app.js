@@ -5,9 +5,11 @@ import { connect } from 'react-redux';
 import Header from './header';
 import Register from './register';
 import SignIn from './sign-in';
+import SignOut from './sign-out';
 import JuncturesCreate from './create';
 import JuncturesList from './list';
 import JuncturesEdit from './edit';
+import NotFound from './404';
 import {
 	watchAuthState,
 	fetchAndWatchJunctures,
@@ -50,32 +52,51 @@ class App extends Component {
 		return (
 			<div>
 				<Header/>
-				<Switch>
-					<Route
-						exact path={routes.home.path}
-						component={Home}
-					/>
-					<Route
-						exact path={routes.juncturesCreate.path}
-						component={JuncturesCreate}
-					/>
-					<Route
-						exact path={routes.junctures.path}
-						component={JuncturesList}
-					/>
-					<Route
-						exact path={routes.juncturesEdit.path}
-						component={JuncturesEdit}
-					/>
-					<Route
-						exact path={routes.register.path}
-						component={Register}
-					/>
-					<Route
-						exact path={routes.signIn.path}
-						component={SignIn}
-					/>
-				</Switch>
+				{this.props.userAuthenticated ? (
+					<Switch>
+						<Route
+							exact path={routes.home.path}
+							component={Home}
+						/>
+						<Route
+							exact path={routes.juncturesCreate.path}
+							component={JuncturesCreate}
+						/>
+						<Route
+							exact path={routes.junctures.path}
+							component={JuncturesList}
+						/>
+						<Route
+							exact path={routes.juncturesEdit.path}
+							component={JuncturesEdit}
+						/>
+						<Route
+							exact path={routes.signOut.path}
+							component={SignOut}
+						/>
+						<Route
+							component={NotFound}
+						/>
+					</Switch>
+				) : (
+					<Switch>
+						<Route
+							exact path={routes.home.path}
+							component={Home}
+						/>
+						<Route
+							exact path={routes.register.path}
+							component={Register}
+						/>
+						<Route
+							exact path={routes.signIn.path}
+							component={SignIn}
+						/>
+						<Route
+							component={NotFound}
+						/>
+					</Switch>
+				)}
 			</div>
 		);
 	}

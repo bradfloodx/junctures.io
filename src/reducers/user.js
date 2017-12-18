@@ -14,7 +14,8 @@ const userReducer = (state = defaultState, action) => {
 				authenticated: true
 			};
 		case actions.USER_NOT_AUTHENTICATED:
-			return state;
+		case actions.AUTH_SIGN_OUT_FULFILLED:
+			return defaultState;
 		default:
 			return state;
 	}
