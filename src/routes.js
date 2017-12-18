@@ -11,6 +11,10 @@ export default {
 		title: 'Sign In',
 		path: '/sign-in'
 	},
+	signOut: {
+		title: 'Sign Out',
+		path: '/sign-out'
+	},
 	juncturesCreate: {
 		title: 'Create',
 		path: '/junctures/new'
