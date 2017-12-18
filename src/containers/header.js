@@ -1,22 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {push} from 'react-router-redux';
+import { connect } from 'react-redux';
+import { push } from 'react-router-redux';
 
 import Header from '../components/header'
 import routes from '../routes';
 
-const mapStateToProps = () => {
-	return {
-		links: [
-			routes.home,
-			routes.register,
-			routes.signIn,
-			routes.juncturesCreate,
-			routes.junctures
-		]
-	}
-};
+const mapStateToProps = ({ user }) => ({
+	userAuthenticated: user.authenticated
+});
 
 const mapDispatchToProps = (dispatch) => {
 	return {
@@ -24,20 +16,26 @@ const mapDispatchToProps = (dispatch) => {
 	}
 };
 
-const HeaderContainer = (props) => (
-	<Header
-		{...props}
-	/>
-);
+const HeaderContainer = ({ go, userAuthenticated }) => {
+	const links = [ routes.home ];
+
+	if (userAuthenticated) {
+		links.push(routes.juncturesCreate, routes.junctures, routes.juncturesEdit);
+	} else {
+		links.push(routes.register, routes.signIn);
+	}
+
+	return (
+		<Header
+			links={links}
+			go={go}
+		/>
+	)
+};
 
 HeaderContainer.propTypes = {
-	links: PropTypes.arrayOf(
-		PropTypes.shape({
-			title: PropTypes.string,
-			path: PropTypes.string
-		})
-	).isRequired,
-	go: PropTypes.func
+	go: PropTypes.func,
+	userAuthenticated: PropTypes.bool
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);

@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {Switch, Route} from 'react-router-dom';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Header from './header';
 import Register from './register';
@@ -19,10 +19,10 @@ const Home = () => (
 	<p>Home</p>
 );
 
-const mapStateToProps = ({router, user, common}) => ({
+const mapStateToProps = ({ router, user, common }) => ({
 	router,
 	redirectTo: common.redirectTo,
-	userIsAuthenticated: user.authenticated
+	userAuthenticated: user.authenticated
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -32,21 +32,21 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class App extends Component {
-	componentWillReceiveProps(nextProps) {
-		if(nextProps.redirectTo) {
+	componentWillReceiveProps (nextProps) {
+		if (nextProps.redirectTo) {
 			this.props.redirect(nextProps.redirectTo);
 		}
 
-		if (nextProps.userIsAuthenticated && !this.props.userIsAuthenticated) {
+		if (nextProps.userAuthenticated && !this.props.userAuthenticated) {
 			this.props.getJunctures();
 		}
 	}
 
-	componentDidMount() {
+	componentDidMount () {
 		this.props.watchAuthState();
 	}
 
-	render() {
+	render () {
 		return (
 			<div>
 				<Header/>
@@ -54,14 +54,6 @@ class App extends Component {
 					<Route
 						exact path={routes.home.path}
 						component={Home}
-					/>
-					<Route
-						exact path={routes.register.path}
-						component={Register}
-					/>
-					<Route
-						exact path={routes.signIn.path}
-						component={SignIn}
 					/>
 					<Route
 						exact path={routes.juncturesCreate.path}
@@ -74,6 +66,14 @@ class App extends Component {
 					<Route
 						exact path={routes.juncturesEdit.path}
 						component={JuncturesEdit}
+					/>
+					<Route
+						exact path={routes.register.path}
+						component={Register}
+					/>
+					<Route
+						exact path={routes.signIn.path}
+						component={SignIn}
 					/>
 				</Switch>
 			</div>
