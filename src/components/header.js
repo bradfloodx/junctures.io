@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Header = styled.header`
 	display: flex;
@@ -28,8 +29,8 @@ const HeaderWrapper = ({links, go}) => (
 		<nav>
 			<NavList>
 				{links.map(({title, path}) => (
-					<NavItem key={title} onClick={() => void go(path)}>
-						<a>{title}</a>
+					<NavItem key={title}>
+						<Link to={path}>{title}</Link>
 					</NavItem>
 				))}
 			</NavList>
