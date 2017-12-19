@@ -21,7 +21,7 @@ const HeaderWrapper = ({ classes, links, go }) => (
 		<AppBar position="static">
 			<Toolbar>
 				<Typography type="title" color="inherit" className={classes.flex}>
-					Title
+					Junctures
 				</Typography>
 				{links.map(({ title, path }) => (
 					<Button color="contrast" onClick={() => go(path)}>
