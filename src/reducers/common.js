@@ -25,6 +25,7 @@ const commonReducer = (state = defaultState, action) => {
 		case actions.AUTH_ATTEMPT_SIGNIN_FULFILLED:
 		case actions.JUNCTURE_CREATE_FULFILLED:
 		case actions.JUNCTURE_EDIT_FULFILLED:
+		case actions.JUNCTURE_DELETE_FULFILLED:
 			return {
 				...state,
 				redirectTo: routes.junctures.path

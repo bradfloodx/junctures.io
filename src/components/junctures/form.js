@@ -11,8 +11,16 @@ const Label = styled.label`
 	margin: 1em;
 `;
 
-const JunctureFormWrapper = ({onFieldChange, onSubmit, name, date, time}) => {
-	const onChange = ({target: {name, value}}) => onFieldChange(name, value);
+const JunctureFormWrapper = ({
+	onFieldChange,
+	onSubmit,
+	name,
+	date,
+	time,
+	onDelete
+}) => {
+	const onChange = ({target: {name, value}}) =>
+		onFieldChange(name, value);
 
 	return (
 		<JunctureForm onSubmit={onSubmit}>
@@ -46,6 +54,8 @@ const JunctureFormWrapper = ({onFieldChange, onSubmit, name, date, time}) => {
 				/>
 			</Label>
 			<button type="submit">Go!</button>
+			<hr/>
+			<button type="button" onClick={onDelete}>Delete</button>
 		</JunctureForm>
 	)
 };
@@ -54,7 +64,16 @@ JunctureFormWrapper.propTypes = {
 	name: PropTypes.string,
 	date: PropTypes.string,
 	time: PropTypes.string,
-	onSubmit: PropTypes.func.isRequired
+	onSubmit: PropTypes.func.isRequired,
+	onDelete: PropTypes.func
+};
+
+JunctureFormWrapper.defaultProps = {
+	name: '',
+	date: '',
+	time: '',
+	onSubmit: () => {},
+	onDelete: () => {}
 };
 
 export default JunctureFormWrapper;
