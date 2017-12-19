@@ -10,12 +10,14 @@ import JuncturesCreate from './create';
 import JuncturesList from './list';
 import JuncturesEdit from './edit';
 import NotFound from './404';
+
+import Main from '../components/main';
+import routes from '../routes';
 import {
 	watchAuthState,
 	watchJuncturesList,
 	redirectTo
 } from '../actions/actions';
-import routes from '../routes';
 
 const Home = () => (
 	<p>Home</p>
@@ -34,7 +36,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 class App extends Component {
-	componentWillReceiveProps (nextProps) {
+	componentWillReceiveProps(nextProps) {
 		if (nextProps.redirectTo) {
 			this.props.redirect(nextProps.redirectTo);
 		}
@@ -44,59 +46,61 @@ class App extends Component {
 		}
 	}
 
-	componentDidMount () {
+	componentDidMount() {
 		this.props.watchAuthState();
 	}
 
-	render () {
+	render() {
 		return (
 			<div>
 				<Header/>
-				{this.props.userAuthenticated ? (
-					<Switch>
-						<Route
-							exact path={routes.home.path}
-							component={Home}
-						/>
-						<Route
-							exact path={routes.juncturesCreate.path}
-							component={JuncturesCreate}
-						/>
-						<Route
-							exact path={routes.junctures.path}
-							component={JuncturesList}
-						/>
-						<Route
-							exact path={routes.juncturesEdit.path}
-							component={JuncturesEdit}
-						/>
-						<Route
-							exact path={routes.signOut.path}
-							component={SignOut}
-						/>
-						<Route
-							component={NotFound}
-						/>
-					</Switch>
-				) : (
-					<Switch>
-						<Route
-							exact path={routes.home.path}
-							component={Home}
-						/>
-						<Route
-							exact path={routes.register.path}
-							component={Register}
-						/>
-						<Route
-							exact path={routes.signIn.path}
-							component={SignIn}
-						/>
-						<Route
-							component={NotFound}
-						/>
-					</Switch>
-				)}
+				<Main>
+					{this.props.userAuthenticated ? (
+						<Switch>
+							<Route
+								exact path={routes.home.path}
+								component={Home}
+							/>
+							<Route
+								exact path={routes.juncturesCreate.path}
+								component={JuncturesCreate}
+							/>
+							<Route
+								exact path={routes.junctures.path}
+								component={JuncturesList}
+							/>
+							<Route
+								exact path={routes.juncturesEdit.path}
+								component={JuncturesEdit}
+							/>
+							<Route
+								exact path={routes.signOut.path}
+								component={SignOut}
+							/>
+							<Route
+								component={NotFound}
+							/>
+						</Switch>
+					) : (
+						<Switch>
+							<Route
+								exact path={routes.home.path}
+								component={Home}
+							/>
+							<Route
+								exact path={routes.register.path}
+								component={Register}
+							/>
+							<Route
+								exact path={routes.signIn.path}
+								component={SignIn}
+							/>
+							<Route
+								component={NotFound}
+							/>
+						</Switch>
+					)}
+				</Main>
 			</div>
 		);
 	}
