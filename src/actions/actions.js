@@ -6,45 +6,57 @@ import { buildJuncturesEditRoute } from '../routes';
 
 export function watchAuthState () {
 	return (dispatch) => {
-		firebase.auth().onAuthStateChanged((user) => {
-			if (user) {
-				dispatch({
-					type: actions.USER_AUTHENTICATED,
-					payload: {
-						username: user.email,
-						userId: user.uid
-					}
-				});
-			} else {
-				dispatch({ type: actions.USER_NOT_AUTHENTICATED });
-			}
-		});
+		firebase
+			.auth()
+			.onAuthStateChanged((user) => {
+				if (user) {
+					dispatch({
+						type: actions.USER_AUTHENTICATED,
+						payload: {
+							username: user.email,
+							userId: user.uid
+						}
+					});
+				} else {
+					dispatch({ type: actions.USER_NOT_AUTHENTICATED });
+				}
+			});
 	}
 }
 
-export function fetchAndWatchJunctures () {
+export function watchJuncturesList () {
 	return (dispatch, getState) => {
-		dispatch({ type: actions.JUNCTURES_LIST_VALUE });
+		dispatch({ type: actions.JUNCTURES_LIST_WATCH });
 
-		database
-			.ref(`users/${getState().user.userId}/junctures`)
-			.on('value', (snapshot) => {
-				const juncturesList = [];
+		const junctures = database
+			.ref(`users/${getState().user.userId}/junctures`);
 
-				snapshot.forEach((childSnapshot) => {
-					juncturesList.push({
-						...childSnapshot.val(),
-						id: childSnapshot.key
-					});
-				});
-
-				if (juncturesList.length) {
-					dispatch({
-						type: actions.JUNCTURES_LIST_VALUE_FULFILLED,
-						payload: juncturesList
-					});
+		junctures.on('child_added', (snapshot) => {
+			dispatch({
+				type: actions.JUNCTURES_LIST_CHILD_ADDED,
+				payload: {
+					...snapshot.val(),
+					id: snapshot.key
 				}
 			});
+		});
+
+		junctures.on('child_changed', (snapshot) => {
+			dispatch({
+				type: actions.JUNCTURES_LIST_CHILD_CHANGED,
+				payload: {
+					...snapshot.val(),
+					id: snapshot.key
+				}
+			});
+		});
+
+		junctures.on('child_removed', (snapshot) => {
+			dispatch({
+				type: actions.JUNCTURES_LIST_CHILD_REMOVED,
+				payload: snapshot.key
+			});
+		});
 	}
 }
 
@@ -161,7 +173,6 @@ export function fetchJunctureById (id) {
 	return (dispatch, getState) => {
 		dispatch({ type: actions.JUNCTURE_FETCH_BY_ID });
 
-		// TODO: .off() listener on de-authentication?
 		database
 			.ref(`users/${getState().user.userId}/junctures/${id}`)
 			.once('value')
@@ -193,6 +204,25 @@ export function attemptEditJuncture (juncture, id) {
 			.catch((error) => {
 				dispatch({
 					type: actions.JUNCTURE_EDIT_ERROR,
+					payload: error.message
+				});
+			});
+	}
+}
+
+export function attemptDeleteJuncture (id) {
+	return (dispatch, getState) => {
+		dispatch({ type: actions.JUNCTURE_DELETE });
+
+		database
+			.ref(`users/${getState().user.userId}/junctures/${id}`)
+			.remove()
+			.then(() => {
+				dispatch({ type: actions.JUNCTURE_DELETE_FULFILLED });
+			})
+			.catch((error) => {
+				dispatch({
+					type: actions.JUNCTURE_DELETE_ERROR,
 					payload: error.message
 				});
 			});
