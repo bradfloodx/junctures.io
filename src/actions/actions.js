@@ -4,7 +4,7 @@ import { firebase, database } from '../firebase';
 import actions from './types';
 import { buildJuncturesEditRoute } from '../routes';
 
-export function watchAuthState () {
+export function watchAuthState() {
 	return (dispatch) => {
 		firebase
 			.auth()
@@ -24,7 +24,7 @@ export function watchAuthState () {
 	}
 }
 
-export function watchJuncturesList () {
+export function watchJuncturesList() {
 	return (dispatch, getState) => {
 		dispatch({ type: actions.JUNCTURES_LIST_WATCH });
 
@@ -60,7 +60,7 @@ export function watchJuncturesList () {
 	}
 }
 
-export function attemptSignIn (username, password) {
+export function attemptSignIn(username, password) {
 	return (dispatch) => {
 		dispatch({ type: actions.AUTH_ATTEMPT_SIGNIN });
 
@@ -87,7 +87,7 @@ export function attemptSignIn (username, password) {
 	}
 }
 
-export function attemptRegister (username, password) {
+export function attemptRegister(username, password) {
 	return (dispatch) => {
 		dispatch({ type: actions.AUTH_ATTEMPT_REGISTER });
 
@@ -115,7 +115,7 @@ export function attemptRegister (username, password) {
 	}
 }
 
-export function signOut () {
+export function signOut() {
 	return (dispatch) => {
 		dispatch({ type: actions.AUTH_SIGN_OUT });
 
@@ -135,7 +135,7 @@ export function signOut () {
 	}
 }
 
-export function attemptCreateJuncture (juncture) {
+export function attemptCreateJuncture(juncture) {
 	return (dispatch, getState) => {
 		dispatch({ type: actions.JUNCTURE_CREATE });
 
@@ -154,22 +154,27 @@ export function attemptCreateJuncture (juncture) {
 	}
 }
 
-export function redirectTo (path) {
+// THIS SHOULD ONLY BE CALLED BY app.js container
+export function redirectTo(path) {
 	return (dispatch) => {
 		dispatch(push(path));
 		dispatch({ type: actions.REDIRECTED });
 	}
 }
 
-export function goToJunctureEdit (id) {
+export function goTo(path) {
 	return (dispatch) =>
 		dispatch({
 			type: actions.GOTO,
-			payload: buildJuncturesEditRoute(id)
+			payload: path
 		});
 }
 
-export function fetchJunctureById (id) {
+export function goToJunctureEdit(id) {
+	return goTo(buildJuncturesEditRoute(id));
+}
+
+export function fetchJunctureById(id) {
 	return (dispatch, getState) => {
 		dispatch({ type: actions.JUNCTURE_FETCH_BY_ID });
 
@@ -191,7 +196,7 @@ export function fetchJunctureById (id) {
 	}
 }
 
-export function attemptEditJuncture (juncture, id) {
+export function attemptEditJuncture(juncture, id) {
 	return (dispatch, getState) => {
 		dispatch({ type: actions.JUNCTURE_EDIT });
 
@@ -210,7 +215,7 @@ export function attemptEditJuncture (juncture, id) {
 	}
 }
 
-export function attemptDeleteJuncture (id) {
+export function attemptDeleteJuncture(id) {
 	return (dispatch, getState) => {
 		dispatch({ type: actions.JUNCTURE_DELETE });
 
