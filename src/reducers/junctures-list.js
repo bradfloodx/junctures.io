@@ -6,16 +6,11 @@ const defaultState = Map();
 
 const juncturesListReducer = (state = defaultState, action) => {
 	switch (action.type) {
-		case actions.JUNCTURES_LIST_VALUE:
-			return state;
-		case actions.JUNCTURES_LIST_VALUE_PENDING:
-			return state;
-		case actions.JUNCTURES_LIST_VALUE_FULFILLED:
-			const junctures = {};
-			action.payload.forEach((juncture) => {
-				junctures[juncture.id] = juncture;
-			});
-			return state.merge( Map(junctures) );
+		case actions.JUNCTURES_LIST_CHILD_ADDED:
+		case actions.JUNCTURES_LIST_CHILD_CHANGED:
+			return state.set(action.payload.id, action.payload);
+		case actions.JUNCTURES_LIST_CHILD_REMOVED:
+			return state.delete(action.payload);
 		default:
 			return state;
 	}

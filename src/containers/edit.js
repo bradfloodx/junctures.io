@@ -5,7 +5,8 @@ import {connect} from 'react-redux';
 import JunctureForm from '../components/junctures/form';
 import {
 	attemptEditJuncture,
-	fetchJunctureById
+	fetchJunctureById,
+	attemptDeleteJuncture
 } from "../actions/actions";
 import actions from "../actions/types";
 
@@ -23,6 +24,9 @@ const mapDispatchToProps = (dispatch) => ({
 		dispatch(fetchJunctureById(id)),
 	editJuncture: (juncture, id) => {
 		dispatch(attemptEditJuncture(juncture, id))
+	},
+	deleteJuncture: (id) => {
+		dispatch(attemptDeleteJuncture(id))
 	},
 	unload: () => dispatch({type: actions.JUNCTURE_UPDATE_UNLOAD})
 });
@@ -55,6 +59,9 @@ class JunctureEditContainer extends Component {
 				{...juncture}
 				onFieldChange={this.props.onFieldChange}
 				onSubmit={onSubmit}
+				onDelete={() =>
+					this.props.deleteJuncture(this.props.id)
+				}
 			/>
 		);
 	}
