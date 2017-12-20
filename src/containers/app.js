@@ -24,7 +24,7 @@ const Home = () => (
 		<h1>Juncture</h1>
 		<p>A point of time, especially one made critical or important by a concurrence of circumstances.</p>
 		<p>
-			<Link to={routes.register}>Register</Link> or <Link to={routes.signIn}>Sign In</Link>
+			<Link to={routes.register.path}>Register</Link> or <Link to={routes.signIn.path}>Sign In</Link>
 		</p>
 	</div>
 );
