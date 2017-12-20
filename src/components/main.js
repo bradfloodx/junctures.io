@@ -29,8 +29,7 @@ const MainWrapper = ({children}) => (
 );
 
 MainWrapper.propTypes = {
-	children: PropTypes.array
-	// children: PropTypes.node
+	children: PropTypes.node
 };
 
 export default MainWrapper;
