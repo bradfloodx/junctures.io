@@ -1,15 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-const JunctureForm = styled.form`
-	padding: 1rem;
-`;
-
-const Label = styled.label`
-	display: flex;
-	margin: 1em;
-`;
+import TextField from 'material-ui/TextField';
+import Button from 'material-ui/Button';
+import Typography from 'material-ui/Typography';
+import Card, { CardActions, CardContent } from 'material-ui/Card';
 
 const JunctureFormWrapper = ({
 	onFieldChange,
@@ -17,46 +11,65 @@ const JunctureFormWrapper = ({
 	name,
 	date,
 	time,
+	buttonLabel,
 	onDelete
 }) => {
 	const onChange = ({target: {name, value}}) =>
 		onFieldChange(name, value);
 
 	return (
-		<JunctureForm onSubmit={onSubmit}>
-			<h3>{name}</h3>
-			<Label>
-				<span>Name</span>
-				<input
-					type="text"
-					name="name"
-					placeholder="Name..."
-					value={name}
-					onChange={onChange}
-				/>
-			</Label>
-			<Label>
-				<span>Date</span>
-				<input
-					type="date"
-					name="date"
-					value={date}
-					onChange={onChange}
-				/>
-			</Label>
-			<Label>
-				<span>Time</span>
-				<input
-					type="time"
-					name="time"
-					value={time}
-					onChange={onChange}
-				/>
-			</Label>
-			<button type="submit">Go!</button>
-			<hr/>
-			<button type="button" onClick={onDelete}>Delete</button>
-		</JunctureForm>
+		<Card>
+			<form onSubmit={onSubmit}>
+				<CardContent>
+					<Typography type="headline" component="h2">
+						{name || 'Juncture'}
+					</Typography>
+					<div>
+						<TextField
+							label="Name"
+							name="name"
+							value={name}
+							onChange={onChange}
+							margin="normal"
+						/>
+					</div>
+					<div>
+						<TextField
+							label="Date"
+							name="date"
+							value={date}
+							type="date"
+							onChange={onChange}
+							margin="normal"
+						/>
+					</div>
+					<div>
+						<TextField
+							label="Time"
+							name="time"
+							value={time}
+							type="time"
+							onChange={onChange}
+							margin="normal"
+						/>
+					</div>
+				</CardContent>
+				<CardActions>
+					<Button raised color="primary" type="submit">
+						{buttonLabel}
+					</Button>
+					{onDelete &&
+						<Button
+							raised
+							color="primary"
+							onClick={onDelete}
+						>
+							Delete
+						</Button>
+					}
+				</CardActions>
+			</form>
+		</Card>
 	)
 };
 
@@ -64,6 +77,7 @@ JunctureFormWrapper.propTypes = {
 	name: PropTypes.string,
 	date: PropTypes.string,
 	time: PropTypes.string,
+	buttonLabel: PropTypes.string,
 	onSubmit: PropTypes.func.isRequired,
 	onDelete: PropTypes.func
 };
@@ -72,8 +86,8 @@ JunctureFormWrapper.defaultProps = {
 	name: '',
 	date: '',
 	time: '',
-	onSubmit: () => {},
-	onDelete: () => {}
+	buttonLabel: 'Save',
+	onDelete: null
 };
 
 export default JunctureFormWrapper;

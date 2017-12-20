@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Header from './header';
@@ -20,7 +20,13 @@ import {
 } from '../actions/actions';
 
 const Home = () => (
-	<p>Home</p>
+	<div>
+		<h1>Juncture</h1>
+		<p>A point of time, especially one made critical or important by a concurrence of circumstances.</p>
+		<p>
+			<Link to={routes.register}>Register</Link> or <Link to={routes.signIn}>Sign In</Link>
+		</p>
+	</div>
 );
 
 const mapStateToProps = ({ router, user, common }) => ({

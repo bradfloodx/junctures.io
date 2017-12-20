@@ -11,8 +11,9 @@ const styles = {
 	root: {
 		width: '100%',
 	},
-	flex: {
+	logo: {
 		flex: 1,
+		cursor: 'pointer'
 	}
 };
 
@@ -20,11 +21,20 @@ const HeaderWrapper = ({ classes, links, go }) => (
 	<div className={classes.root}>
 		<AppBar position="static">
 			<Toolbar>
-				<Typography type="title" color="inherit" className={classes.flex}>
-					Junctures
+				<Typography
+					type="title"
+					color="inherit"
+					className={classes.logo}
+					onClick={() => {go('/')}}
+				>
+					Junctures.io
 				</Typography>
 				{links.map(({ title, path }) => (
-					<Button color="contrast" onClick={() => go(path)}>
+					<Button
+						color="contrast"
+						onClick={() => go(path)}
+						key={title}
+					>
 						{title}
 					</Button>
 				))}
