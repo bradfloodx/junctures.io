@@ -6,15 +6,16 @@ import Header from '../components/header'
 import routes from '../routes';
 import { goTo } from "../actions/actions";
 
-const mapStateToProps = ({ user }) => ({
-	userAuthenticated: user.authenticated
+const mapStateToProps = ({ user, common }) => ({
+	userAuthenticated: user.authenticated,
+	ready: common.appReady
 });
 
 const mapDistpatchToProps = (dispatch) => ({
 	go: (path) => dispatch(goTo(path))
 });
 
-const HeaderContainer = ({ userAuthenticated, go }) => {
+const HeaderContainer = ({ userAuthenticated, ready, go }) => {
 	const links = [];
 
 	if (userAuthenticated) {
@@ -25,7 +26,7 @@ const HeaderContainer = ({ userAuthenticated, go }) => {
 
 	return (
 		<Header
-			links={links}
+			links={ready ? links : []}
 			go={go}
 		/>
 	)
