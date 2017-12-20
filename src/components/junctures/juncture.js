@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 import moment from 'moment';
 import 'moment-precise-range-plugin';
 
-const Juncture = styled.li`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-`;
-
-const Detail = styled.div`
-	margin: 0 30px;
-`;
+import {
+	ListItem,
+	ListItemAvatar,
+	ListItemSecondaryAction,
+	ListItemText,
+	ListItemIcon
+} from 'material-ui/List';
+import IconButton from 'material-ui/IconButton';
+import FlareIcon from 'material-ui-icons/Flare';
+import ModeEditIcon from 'material-ui-icons/ModeEdit';
 
 const displayDistance = (date, time) => {
 	const dateParts = date.split('-');
@@ -21,7 +21,7 @@ const displayDistance = (date, time) => {
 
 	const dateTimeParts = {
 		year: dateParts[0],
-		month: dateParts[1] - 1, // Month needs to be zero-indexed
+		month: dateParts[1] - 1, // Month must be zero-indexed
 		day: dateParts[2],
 		hour: timeParts[0],
 		minute: timeParts[1]
@@ -42,14 +42,27 @@ const displayDistance = (date, time) => {
 };
 
 const JunctureWrapper = ({ name, date, time, id, go }) => (
-	<Juncture>
-		<Detail>{name}</Detail>
-		<Detail>{date} {time}</Detail>
-		<Detail>{displayDistance(date, time)}</Detail>
-		<Detail>
-			<button onClick={() => go(id)}>Edit</button>
-		</Detail>
-	</Juncture>
+	<ListItem button={true} onClick={() => go(id)}>
+		<ListItemAvatar>
+			<ListItemIcon>
+				<FlareIcon/>
+			</ListItemIcon>
+		</ListItemAvatar>
+		<ListItemText
+			primary={name}
+			secondary={displayDistance(date, time)}
+		/>
+		<ListItemSecondaryAction
+			style={{display: 'none'}}
+		>
+			<IconButton
+				aria-label="Edit"
+				onClick={() => go(id)}
+			>
+				<ModeEditIcon/>
+			</IconButton>
+		</ListItemSecondaryAction>
+	</ListItem>
 );
 
 JunctureWrapper.propTypes = {

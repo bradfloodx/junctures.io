@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import List from 'material-ui/List';
+
 import Juncture from './juncture';
 
-const JuncturesList = styled.main`
+const JuncturesList = styled.article`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -12,7 +14,7 @@ const JuncturesList = styled.main`
 
 const JuncturesListWrapper = ({junctures, go}) => (
 	<JuncturesList>
-		<ol>
+		<List dense={false}>
 			{junctures.map(({name, date, time, id}) => (
 				<Juncture
 					name={name}
@@ -23,7 +25,7 @@ const JuncturesListWrapper = ({junctures, go}) => (
 					key={id}
 				/>
 			))}
-		</ol>
+		</List>
 	</JuncturesList>
 );
 
