@@ -1,8 +1,8 @@
 import actions from '../actions/types';
 
 const defaultState = {
-	name: 'Thing',
-	date: '2017-12-25',
+	name: '',
+	date: '2019-12-01',
 	time: '08:00'
 };
 

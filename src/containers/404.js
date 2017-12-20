@@ -1,7 +1,10 @@
 import React from 'react';
+import { CircularProgress } from 'material-ui/Progress';
 
 const NotFound = () => (
-	<p>Not Found 404</p>
+	<div style={{textAlign: 'center'}}>
+		<CircularProgress/>
+	</div>
 );
 
 export default NotFound;
