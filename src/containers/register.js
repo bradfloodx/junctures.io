@@ -42,6 +42,7 @@ class RegisterWrapper extends Component {
 				onFieldChange={this.props.onFieldChange}
 				username={this.props.username}
 				password={this.props.password}
+				buttonLabel={'Register'}
 			/>
 		)
 	}
