@@ -5,6 +5,8 @@ import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
 
+import {displayDistance} from '../../utils';
+
 const JunctureFormWrapper = ({
 	onFieldChange,
 	onSubmit,
@@ -24,6 +26,13 @@ const JunctureFormWrapper = ({
 					<Typography type="headline" component="h2">
 						{name || 'Juncture'}
 					</Typography>
+					<Typography type="subheading" color="secondary">
+						{date && time ?
+							displayDistance(date, time)
+							:
+							'...'
+						}
+					</Typography>
 					<div>
 						<TextField
 							label="Name"
@@ -41,6 +50,9 @@ const JunctureFormWrapper = ({
 							type="date"
 							onChange={onChange}
 							margin="normal"
+							InputLabelProps={{
+								shrink: true
+							}}
 						/>
 					</div>
 					<div>
@@ -51,6 +63,9 @@ const JunctureFormWrapper = ({
 							type="time"
 							onChange={onChange}
 							margin="normal"
+							InputLabelProps={{
+								shrink: true
+							}}
 						/>
 					</div>
 				</CardContent>
