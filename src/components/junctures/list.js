@@ -12,20 +12,24 @@ const JuncturesList = styled.article`
 	justify-content: space-between;
 `;
 
-const JuncturesListWrapper = ({junctures, go}) => (
+const JuncturesListWrapper = ({junctures, go, create}) => (
 	<JuncturesList>
-		<List dense={false}>
-			{junctures.map(({name, date, time, id}) => (
-				<Juncture
-					name={name}
-					date={date}
-					time={time}
-					id={id}
-					go={go}
-					key={id}
-				/>
-			))}
-		</List>
+		{junctures.length ? (
+			<List dense={false}>
+				{junctures.map(({name, date, time, id}) => (
+					<Juncture
+						name={name}
+						date={date}
+						time={time}
+						id={id}
+						go={go}
+						key={id}
+					/>
+				))}
+			</List>
+		) : (
+			<div>Haven't created any junctures yet? <a onClick={create}>Create one now</a>.</div>
+		)}
 	</JuncturesList>
 );
 
@@ -38,7 +42,8 @@ JuncturesListWrapper.propTypes = {
 			id: PropTypes.string
 		})
 	),
-	go: PropTypes.func.isRequired
+	go: PropTypes.func.isRequired,
+	create: PropTypes.func.isRequired
 };
 
 export default JuncturesListWrapper;
