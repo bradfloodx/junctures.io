@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import Home from './home';
 import Header from './header';
 import Register from './register';
 import SignIn from './sign-in';
@@ -19,16 +20,6 @@ import {
 	watchJuncturesList,
 	redirectTo
 } from '../actions/actions';
-
-const Home = () => (
-	<div>
-		<h1>Juncture</h1>
-		<p>A point of time, especially one made critical or important by a concurrence of circumstances.</p>
-		<p>
-			<Link to={routes.register.path}>Register</Link> or <Link to={routes.signIn.path}>Sign In</Link>
-		</p>
-	</div>
-);
 
 const mapStateToProps = ({ router, user, common }) => ({
 	router,
