@@ -14,6 +14,7 @@ const JunctureFormWrapper = ({
 	date,
 	time,
 	buttonLabel,
+	title,
 	onDelete
 }) => {
 	const onChange = ({target: {name, value}}) =>
@@ -24,50 +25,47 @@ const JunctureFormWrapper = ({
 			<form onSubmit={onSubmit}>
 				<CardContent>
 					<Typography type="headline" component="h2">
-						{name || 'Juncture'}
+						{name || title}
 					</Typography>
 					<Typography type="subheading" color="secondary">
 						{date && time ?
 							displayDistance(date, time)
 							:
-							'...'
+							'A point in time'
 						}
 					</Typography>
-					<div>
-						<TextField
-							label="Name"
-							name="name"
-							value={name}
-							onChange={onChange}
-							margin="normal"
-						/>
-					</div>
-					<div>
-						<TextField
-							label="Date"
-							name="date"
-							value={date}
-							type="date"
-							onChange={onChange}
-							margin="normal"
-							InputLabelProps={{
-								shrink: true
-							}}
-						/>
-					</div>
-					<div>
-						<TextField
-							label="Time"
-							name="time"
-							value={time}
-							type="time"
-							onChange={onChange}
-							margin="normal"
-							InputLabelProps={{
-								shrink: true
-							}}
-						/>
-					</div>
+					<TextField
+						label="Name"
+						name="name"
+						value={name}
+						onChange={onChange}
+						margin="normal"
+						fullWidth
+					/>
+					<TextField
+						label="Date"
+						name="date"
+						value={date}
+						type="date"
+						onChange={onChange}
+						fullWidth
+						margin="normal"
+						InputLabelProps={{
+							shrink: true
+						}}
+					/>
+					<TextField
+						label="Time"
+						name="time"
+						value={time}
+						type="time"
+						onChange={onChange}
+						fullWidth
+						margin="normal"
+						InputLabelProps={{
+							shrink: true
+						}}
+					/>
 				</CardContent>
 				<CardActions>
 					<Button raised color="primary" type="submit">
@@ -93,6 +91,7 @@ JunctureFormWrapper.propTypes = {
 	date: PropTypes.string,
 	time: PropTypes.string,
 	buttonLabel: PropTypes.string,
+	title: PropTypes.string,
 	onSubmit: PropTypes.func.isRequired,
 	onDelete: PropTypes.func
 };
@@ -102,6 +101,7 @@ JunctureFormWrapper.defaultProps = {
 	date: '',
 	time: '',
 	buttonLabel: 'Save',
+	title: 'Juncture',
 	onDelete: null
 };
 
