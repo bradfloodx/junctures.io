@@ -12,17 +12,6 @@ import registerServiceWorker from './registerServiceWorker';
 
 const theme = createMuiTheme();
 
-// TODO
-// - Style (React UI Material Design?)
-// - Tests! (see redux docs + ...)
-// - Error messages and feedback
-// - Home page
-// - Cordova App (build, icons + launch screens, store pages and screenshots, submit)
-// - Refactor actions/actions.js
-// - Flow typings
-// - More Immutable
-// -
-
 render((
 	<Provider store={store}>
 		<ConnectedRouter history={history}>
