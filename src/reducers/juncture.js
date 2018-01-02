@@ -2,8 +2,8 @@ import actions from '../actions/types';
 
 const defaultState = {
 	name: '',
-	date: '2019-12-01',
-	time: '08:00'
+	date: '',
+	time: ''
 };
 
 const juncturesListReducer = (state = defaultState, action) => {
