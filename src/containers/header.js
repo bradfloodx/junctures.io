@@ -19,7 +19,7 @@ const HeaderContainer = ({ userAuthenticated, ready, go }) => {
 	const links = [];
 
 	if (userAuthenticated) {
-		links.push(routes.juncturesCreate, routes.junctures);
+		links.push(routes.juncturesCreate, routes.junctures, routes.signOut);
 	} else {
 		links.push(routes.register, routes.signIn);
 	}
