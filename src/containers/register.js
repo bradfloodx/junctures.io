@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {attemptRegister} from '../actions/actions';
+import {attemptRegister} from '../actions/common';
 import actions from '../actions/types';
 import AuthForm from '../components/auth/form';
 
