@@ -8,7 +8,7 @@ const Home = ({userAuthenticated}) => (
 	<div>
 		<h1>Juncture</h1>
 		<p>
-			A point of time, especially one made critical or important
+			A point in time, especially one made critical or important
 			by a concurrence of circumstances.
 		</p>
 		{userAuthenticated ? (
@@ -28,6 +28,10 @@ const Home = ({userAuthenticated}) => (
 				</Link>
 			</p>
 		)}
+		<p>
+			Get perspective on the important moments in your life by
+			adding them here and reviewing them in times of contemplation.
+		</p>
 	</div>
 );
 
