@@ -29,6 +29,7 @@ const AuthFormWrapper = ({
 							type="email"
 							name="username"
 							value={username}
+							required
 							onChange={onChange}
 							margin="normal"
 						/>
@@ -39,6 +40,7 @@ const AuthFormWrapper = ({
 							type="password"
 							name="password"
 							value={password}
+							required
 							onChange={onChange}
 							margin="normal"
 						/>
