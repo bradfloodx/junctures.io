@@ -38,6 +38,8 @@ const JunctureFormWrapper = ({
 						label="Name"
 						name="name"
 						value={name}
+						type="text"
+						required
 						onChange={onChange}
 						margin="normal"
 						fullWidth
@@ -47,6 +49,7 @@ const JunctureFormWrapper = ({
 						name="date"
 						value={date}
 						type="date"
+						required
 						onChange={onChange}
 						fullWidth
 						margin="normal"
@@ -59,6 +62,7 @@ const JunctureFormWrapper = ({
 						name="time"
 						value={time}
 						type="time"
+						required
 						onChange={onChange}
 						fullWidth
 						margin="normal"
