@@ -22,7 +22,7 @@ export function displayDistance(date, time) {
 	distance += difference.months ? `${difference.months} months, ` : '';
 	distance += difference.days ? `${difference.days} days ` : '';
 	distance += difference.hours ? `${difference.hours} hours ` : '';
-	distance += difference.minutes ? `${difference.minutes} minutes ` : '';
+	distance += difference.minutes ? `${difference.minutes} minutes` : '';
 
 	return distance
 }
