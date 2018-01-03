@@ -11,6 +11,8 @@ const juncturesListReducer = (state = defaultState, action) => {
 			return state.set(action.payload.id, action.payload);
 		case actions.JUNCTURES_LIST_CHILD_REMOVED:
 			return state.delete(action.payload);
+		case actions.JUNCTURES_LIST_UNWATCH:
+			return defaultState;
 		default:
 			return state;
 	}

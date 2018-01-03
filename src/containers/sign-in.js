@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {attemptSignIn} from '../actions/actions';
+import {attemptSignIn} from '../actions/common';
 import actions from '../actions/types';
 import AuthForm from '../components/auth/form';
 
@@ -39,6 +39,7 @@ class SignInWrapper extends Component {
 				onFieldChange={this.props.onFieldChange}
 				username={this.props.username}
 				password={this.props.password}
+				buttonLabel={'Sign In'}
 			/>
 		)
 	}

@@ -4,12 +4,18 @@ import { connect } from 'react-redux';
 
 import Header from '../components/header'
 import routes from '../routes';
+import { goTo } from "../actions/common";
 
-const mapStateToProps = ({ user }) => ({
-	userAuthenticated: user.authenticated
+const mapStateToProps = ({ user, common }) => ({
+	userAuthenticated: user.authenticated,
+	ready: common.appReady
 });
 
-const HeaderContainer = ({ userAuthenticated }) => {
+const mapDistpatchToProps = (dispatch) => ({
+	go: (path) => dispatch(goTo(path))
+});
+
+const HeaderContainer = ({ userAuthenticated, ready, go }) => {
 	const links = [];
 
 	if (userAuthenticated) {
@@ -20,7 +26,8 @@ const HeaderContainer = ({ userAuthenticated }) => {
 
 	return (
 		<Header
-			links={links}
+			links={ready ? links : []}
+			go={go}
 		/>
 	)
 };
@@ -30,4 +37,4 @@ HeaderContainer.propTypes = {
 	userAuthenticated: PropTypes.bool
 };
 
-export default connect(mapStateToProps)(HeaderContainer);
+export default connect(mapStateToProps, mapDistpatchToProps)(HeaderContainer);

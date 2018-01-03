@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import Home from './home';
 import Header from './header';
 import Register from './register';
 import SignIn from './sign-in';
@@ -9,32 +10,31 @@ import SignOut from './sign-out';
 import JuncturesCreate from './create';
 import JuncturesList from './list';
 import JuncturesEdit from './edit';
+import Loading from './loading';
 import NotFound from './404';
-import {
-	watchAuthState,
-	watchJuncturesList,
-	redirectTo
-} from '../actions/actions';
-import routes from '../routes';
 
-const Home = () => (
-	<p>Home</p>
-);
+import Main from '../components/main';
+import routes from '../routes';
+import { watchAuthState } from '../actions/common';
+import { redirectTo } from '../actions/app';
+import { watchJuncturesList, unwatchJuncturesList } from '../actions/junctures';
 
 const mapStateToProps = ({ router, user, common }) => ({
 	router,
 	redirectTo: common.redirectTo,
-	userAuthenticated: user.authenticated
+	userAuthenticated: user.authenticated,
+	appReady: common.appReady
 });
 
 const mapDispatchToProps = (dispatch) => ({
 	watchJunctures: () => dispatch(watchJuncturesList()),
+	unwatchJunctures: () => dispatch(unwatchJuncturesList()),
 	watchAuthState: () => dispatch(watchAuthState()),
 	redirect: (path) => dispatch(redirectTo(path))
 });
 
 class App extends Component {
-	componentWillReceiveProps (nextProps) {
+	componentWillReceiveProps(nextProps) {
 		if (nextProps.redirectTo) {
 			this.props.redirect(nextProps.redirectTo);
 		}
@@ -42,61 +42,58 @@ class App extends Component {
 		if (nextProps.userAuthenticated && !this.props.userAuthenticated) {
 			this.props.watchJunctures();
 		}
+		else if (!nextProps.userAuthenticated && this.props.userAuthenticated) {
+			this.props.unwatchJunctures();
+		}
 	}
 
-	componentDidMount () {
+	componentDidMount() {
 		this.props.watchAuthState();
 	}
 
-	render () {
+	render() {
 		return (
 			<div>
 				<Header/>
-				{this.props.userAuthenticated ? (
-					<Switch>
-						<Route
-							exact path={routes.home.path}
-							component={Home}
-						/>
-						<Route
-							exact path={routes.juncturesCreate.path}
-							component={JuncturesCreate}
-						/>
-						<Route
-							exact path={routes.junctures.path}
-							component={JuncturesList}
-						/>
-						<Route
-							exact path={routes.juncturesEdit.path}
-							component={JuncturesEdit}
-						/>
-						<Route
-							exact path={routes.signOut.path}
-							component={SignOut}
-						/>
-						<Route
-							component={NotFound}
-						/>
-					</Switch>
-				) : (
-					<Switch>
-						<Route
-							exact path={routes.home.path}
-							component={Home}
-						/>
-						<Route
-							exact path={routes.register.path}
-							component={Register}
-						/>
-						<Route
-							exact path={routes.signIn.path}
-							component={SignIn}
-						/>
-						<Route
-							component={NotFound}
-						/>
-					</Switch>
-				)}
+				<Main>
+					{this.props.appReady ? (
+						<Switch>
+							<Route
+								exact path={routes.home.path}
+								component={Home}
+							/>
+							<Route
+								exact path={routes.juncturesCreate.path}
+								component={this.props.userAuthenticated ? JuncturesCreate : SignIn}
+							/>
+							<Route
+								exact path={routes.junctures.path}
+								component={this.props.userAuthenticated ? JuncturesList : SignIn}
+							/>
+							<Route
+								exact path={routes.juncturesEdit.path}
+								component={this.props.userAuthenticated ? JuncturesEdit : SignIn}
+							/>
+							<Route
+								exact path={routes.register.path}
+								component={Register}
+							/>
+							<Route
+								exact path={routes.signIn.path}
+								component={SignIn}
+							/>
+							<Route
+								exact path={routes.signOut.path}
+								component={SignOut}
+							/>
+							<Route
+								component={NotFound}
+							/>
+						</Switch>
+					) : (
+						<Loading />
+					)}
+				</Main>
 			</div>
 		);
 	}

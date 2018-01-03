@@ -1,41 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
-const Header = styled.header`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-`;
+import { withStyles } from 'material-ui/styles';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+import Button from 'material-ui/Button';
 
-const NavList = styled.ul`
-	margin: 0;
-	list-style: none;
-	display: flex;
-`;
-
-const NavItem = styled.li`
-	margin: 10px 15px;
-	
-	&:hover {
-		text-decoration: underline;
+const styles = {
+	root: {
+		width: '100%',
+	},
+	logo: {
+		flex: 1,
+		cursor: 'pointer'
 	}
-`;
+};
 
-const HeaderWrapper = ({links}) => (
-	<Header>
-		<Link to="/">Junctures</Link>
-		<nav>
-			<NavList>
-				{links.map(({title, path}) => (
-					<NavItem key={title}>
-						<Link to={path}>{title}</Link>
-					</NavItem>
+const HeaderWrapper = ({ classes, links, go }) => (
+	<div className={classes.root}>
+		<AppBar position="static">
+			<Toolbar>
+				<Typography
+					type="title"
+					color="inherit"
+					className={classes.logo}
+					onClick={() => {go('/')}}
+				>
+					Junctures.io
+				</Typography>
+				{links.map(({ title, path }) => (
+					<Button
+						color="contrast"
+						onClick={() => go(path)}
+						key={title}
+					>
+						{title}
+					</Button>
 				))}
-			</NavList>
-		</nav>
-	</Header>
+			</Toolbar>
+		</AppBar>
+	</div>
 );
 
 HeaderWrapper.propTypes = {
@@ -47,4 +52,4 @@ HeaderWrapper.propTypes = {
 	).isRequired
 };
 
-export default HeaderWrapper;
+export default withStyles(styles)(HeaderWrapper);

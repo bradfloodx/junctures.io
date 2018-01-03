@@ -1,9 +1,9 @@
 import React from 'react';
 
-const NotFound = () => (
+const Unauthorised = () => (
 	<div style={{textAlign: 'center'}}>
-		404 :(
+		Unauthorised
 	</div>
 );
 
-export default NotFound;
+export default Unauthorised;
