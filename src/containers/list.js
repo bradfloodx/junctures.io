@@ -3,20 +3,22 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import JuncturesList from '../components/junctures/list';
-import {goToJunctureEdit} from '../actions/actions';
+import {goToJunctureEdit, goTo} from '../actions/common';
 
 const mapStateToProps = ({juncturesList}) => ({
 	junctures: juncturesList.toArray()
 });
 
 const mapDistpatchToProps = (dispatch) => ({
-	go: (id) => dispatch(goToJunctureEdit(id))
+	go: (id) => dispatch(goToJunctureEdit(id)),
+	create: () => dispatch(goTo('/junctures/new'))
 });
 
-const JuncturesListContainer = ({junctures, go}) => (
+const JuncturesListContainer = ({junctures, go, create}) => (
 	<JuncturesList
 		junctures={junctures}
 		go={go}
+		create={create}
 	/>
 );
 

@@ -2,28 +2,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import List from 'material-ui/List';
+
 import Juncture from './juncture';
 
-const JuncturesList = styled.main`
+const JuncturesList = styled.article`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 `;
 
-const JuncturesListWrapper = ({junctures, go}) => (
+const JuncturesListWrapper = ({junctures, go, create}) => (
 	<JuncturesList>
-		<ol>
-			{junctures.map(({name, date, time, id}) => (
-				<Juncture
-					name={name}
-					date={date}
-					time={time}
-					id={id}
-					go={go}
-					key={id}
-				/>
-			))}
-		</ol>
+		{junctures.length ? (
+			<List dense={false}>
+				{junctures.map(({name, date, time, id}) => (
+					<Juncture
+						name={name}
+						date={date}
+						time={time}
+						id={id}
+						go={go}
+						key={id}
+					/>
+				))}
+			</List>
+		) : (
+			<div>Haven't created any junctures yet? <a onClick={create}>Create one now</a>.</div>
+		)}
 	</JuncturesList>
 );
 
@@ -36,7 +42,8 @@ JuncturesListWrapper.propTypes = {
 			id: PropTypes.string
 		})
 	),
-	go: PropTypes.func.isRequired
+	go: PropTypes.func.isRequired,
+	create: PropTypes.func.isRequired
 };
 
 export default JuncturesListWrapper;

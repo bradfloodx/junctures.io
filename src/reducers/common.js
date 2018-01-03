@@ -2,7 +2,8 @@ import actions from '../actions/types';
 import routes from '../routes';
 
 const defaultState = {
-	redirectTo: null
+	redirectTo: null,
+	appReady: false
 };
 
 const commonReducer = (state = defaultState, action) => {
@@ -34,6 +35,12 @@ const commonReducer = (state = defaultState, action) => {
 			return {
 				...state,
 				redirectTo: routes.home.path
+			};
+		case actions.USER_AUTHENTICATED:
+		case actions.USER_NOT_AUTHENTICATED:
+			return {
+				...state,
+				appReady: true
 			};
 		default:
 			return state;

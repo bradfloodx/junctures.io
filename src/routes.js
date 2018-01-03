@@ -20,7 +20,7 @@ export default {
 		path: '/junctures/new'
 	},
 	junctures: {
-		title: 'Junctures List',
+		title: 'List',
 		path: '/junctures'
 	},
 	juncturesEdit: {
