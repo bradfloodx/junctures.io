@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {attemptCreateJuncture} from '../actions/actions';
+import {attemptCreateJuncture} from '../actions/junctures';
 import actions from '../actions/types';
 import JunctureForm from '../components/junctures/form';
 import {Component} from "react";

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import JuncturesList from '../components/junctures/list';
-import {goToJunctureEdit, goTo} from '../actions/actions';
+import {goToJunctureEdit, goTo} from '../actions/common';
 
 const mapStateToProps = ({juncturesList}) => ({
 	junctures: juncturesList.toArray()

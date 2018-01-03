@@ -7,7 +7,7 @@ import {
 	attemptEditJuncture,
 	fetchJunctureById,
 	attemptDeleteJuncture
-} from "../actions/actions";
+} from "../actions/junctures";
 import actions from "../actions/types";
 
 const mapStateToProps = ({juncture}, {match: {params: {id} = ''} = {}}) => ({
