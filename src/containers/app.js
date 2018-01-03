@@ -15,11 +15,9 @@ import NotFound from './404';
 
 import Main from '../components/main';
 import routes from '../routes';
-import {
-	watchAuthState,
-	watchJuncturesList,
-	redirectTo
-} from '../actions/actions';
+import { watchAuthState } from '../actions/common';
+import { redirectTo } from '../actions/app';
+import { watchJuncturesList, unwatchJuncturesList } from '../actions/junctures';
 
 const mapStateToProps = ({ router, user, common }) => ({
 	router,
@@ -30,6 +28,7 @@ const mapStateToProps = ({ router, user, common }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 	watchJunctures: () => dispatch(watchJuncturesList()),
+	unwatchJunctures: () => dispatch(unwatchJuncturesList()),
 	watchAuthState: () => dispatch(watchAuthState()),
 	redirect: (path) => dispatch(redirectTo(path))
 });
@@ -42,6 +41,9 @@ class App extends Component {
 
 		if (nextProps.userAuthenticated && !this.props.userAuthenticated) {
 			this.props.watchJunctures();
+		}
+		else if (!nextProps.userAuthenticated && this.props.userAuthenticated) {
+			this.props.unwatchJunctures();
 		}
 	}
 

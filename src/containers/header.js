@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import Header from '../components/header'
 import routes from '../routes';
-import { goTo } from "../actions/actions";
+import { goTo } from "../actions/common";
 
 const mapStateToProps = ({ user, common }) => ({
 	userAuthenticated: user.authenticated,
