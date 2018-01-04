@@ -1,5 +1,4 @@
 const types = {
-
 	GOTO:
 		'GOTO',
 	REDIRECTED:
@@ -79,7 +78,7 @@ const types = {
 	JUNCTURES_LIST_CHILD_REMOVED:
 		'JUNCTURES_LIST_CHILD_REMOVED',
 	JUNCTURES_LIST_UNWATCH:
-		'JUNCTURES_LIST_UNWATCH'
+		'JUNCTURES_LIST_UNWATCH',
 };
 
 export default types;

@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import {attemptRegister} from '../actions/common';
 import actions from '../actions/types';
-import AuthForm from '../components/auth/form';
+import AuthForm from '../components/auth-form';
 
 const mapStateToProps = ({auth}) => ({...auth});
 
