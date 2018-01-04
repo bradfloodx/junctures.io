@@ -10,8 +10,8 @@ import SignOut from './sign-out';
 import JuncturesCreate from './create';
 import JuncturesList from './list';
 import JuncturesEdit from './edit';
-import Loading from './loading';
-import NotFound from './404';
+import Loading from '../components/loading';
+import NotFound from '../components/404';
 
 import Main from '../components/main';
 import routes from '../routes';
