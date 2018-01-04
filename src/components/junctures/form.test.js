@@ -9,11 +9,10 @@ const juncture = {
 };
 
 it('renders without crashing', () => {
-	const div = document.createElement('div');
 	ReactDOM.render((
 		<JunctureEditForm
 			juncture={juncture}
 			onSubmit={() => {}}
 		/>
-	), div);
+	), document.createElement('div'));
 });
