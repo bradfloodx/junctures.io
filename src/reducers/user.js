@@ -1,24 +1,23 @@
+import { Record } from 'immutable';
 import actions from '../actions/types';
 
-const defaultState = {
+export const defaultState = Record({
 	username: '',
-	userId: 0,
+	userId: '',
 	authenticated: false
-};
+});
 
-const userReducer = (state = defaultState, action) => {
+export default function userReducer(state = defaultState, action) {
 	switch (action.type) {
 		case actions.USER_AUTHENTICATED:
-			return {
+			return new state({
 				...action.payload,
 				authenticated: true
-			};
+			});
 		case actions.USER_NOT_AUTHENTICATED:
 		case actions.AUTH_SIGN_OUT_FULFILLED:
 			return defaultState;
-		default:
-			return state;
 	}
-};
 
-export default userReducer;
+	return state;
+};

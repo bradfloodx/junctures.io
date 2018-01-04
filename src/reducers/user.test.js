@@ -1,12 +1,5 @@
-import userReducer from './user';
+import userReducer, { defaultState } from "./user";
 import actions from '../actions/types';
-import authReducer from "./auth";
-
-const defaultState = {
-	username: '',
-	userId: 0,
-	authenticated: false
-};
 
 describe('user reducer', () => {
 	it('should return the initial state', () => {
@@ -19,6 +12,13 @@ describe('user reducer', () => {
 			.toEqual(defaultState);
 	});
 
+	it('should return modified state', () => {
+		const modifiedState = new defaultState({username: 'foo'});
+
+		expect(userReducer(modifiedState, {}))
+			.toEqual(modifiedState);
+	});
+
 	it(`should handle ${actions.USER_AUTHENTICATED}`, () => {
 		const action = {
 			type: actions.USER_AUTHENTICATED,
@@ -28,10 +28,10 @@ describe('user reducer', () => {
 			}
 		};
 		expect(userReducer(defaultState, action))
-			.toEqual({
+			.toEqual(new defaultState({
 				...action.payload,
 				authenticated: true
-			});
+			}));
 	});
 
 	it(`should handle ${actions.USER_NOT_AUTHENTICATED}`, () => {
