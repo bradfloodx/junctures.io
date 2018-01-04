@@ -42,9 +42,9 @@ const commonReducer = (state = defaultState, action) => {
 				...state,
 				appReady: true
 			};
-		default:
-			return state;
 	}
+
+	return state;
 };
 
 export default commonReducer;

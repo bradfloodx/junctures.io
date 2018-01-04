@@ -15,9 +15,9 @@ const authReducer = (state = defaultState, action) => {
 			};
 		case actions.AUTH_UNLOAD:
 			return defaultState;
-		default:
-			return state;
 	}
+
+	return state;
 };
 
 export default authReducer;

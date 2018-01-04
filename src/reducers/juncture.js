@@ -18,9 +18,9 @@ const juncturesListReducer = (state = defaultState, action) => {
 			return defaultState;
 		case actions.JUNCTURE_FETCH_BY_ID_FULFILLED:
 			return {...action.payload, fetched: true};
-		default:
-			return state;
 	}
+
+	return state;
 };
 
 export default juncturesListReducer;
