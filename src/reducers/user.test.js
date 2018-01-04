@@ -1,5 +1,6 @@
 import userReducer from './user';
 import actions from '../actions/types';
+import authReducer from "./auth";
 
 const defaultState = {
 	username: '',
@@ -10,6 +11,11 @@ const defaultState = {
 describe('user reducer', () => {
 	it('should return the initial state', () => {
 		expect(userReducer(undefined, {}))
+			.toEqual(defaultState);
+	});
+
+	it('should return the default state', () => {
+		expect(userReducer(defaultState, {}))
 			.toEqual(defaultState);
 	});
 
