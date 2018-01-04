@@ -8,7 +8,7 @@ import { store, history } from './store';
 import App from './containers/app';
 
 import './index.css';
-import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from './service-worker';
 
 const theme = createMuiTheme();
 
