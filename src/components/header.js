@@ -17,7 +17,7 @@ const styles = {
 	}
 };
 
-const HeaderWrapper = ({ classes, links, go }) => (
+export const HeaderWrapper = ({ classes, links, go }) => (
 	<div className={classes.root}>
 		<AppBar position="static">
 			<Toolbar>
@@ -44,12 +44,14 @@ const HeaderWrapper = ({ classes, links, go }) => (
 );
 
 HeaderWrapper.propTypes = {
+	classes: PropTypes.object, // MaterialUI
 	links: PropTypes.arrayOf(
 		PropTypes.shape({
 			title: PropTypes.string,
 			path: PropTypes.string
 		})
-	).isRequired
+	).isRequired,
+	go: PropTypes.func,
 };
 
 export default withStyles(styles)(HeaderWrapper);

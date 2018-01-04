@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from './header';
+import {HeaderWrapper as Header} from './header';
 
 const links = [
 	{title: 'Sign In', path: '/sign-in'},
@@ -13,6 +13,7 @@ it('renders without crashing', () => {
 		<Header
 			links={links}
 			go={() => {}}
+			classes={{}}
 		/>
 	), div);
 });

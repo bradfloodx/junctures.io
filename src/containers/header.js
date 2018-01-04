@@ -34,7 +34,8 @@ const HeaderContainer = ({ userAuthenticated, ready, go }) => {
 
 HeaderContainer.propTypes = {
 	go: PropTypes.func,
-	userAuthenticated: PropTypes.bool
+	userAuthenticated: PropTypes.bool,
+	ready: PropTypes.bool,
 };
 
 export default connect(mapStateToProps, mapDistpatchToProps)(HeaderContainer);
