@@ -1,5 +1,6 @@
 import authReducer from './auth';
 import actions from '../actions/types';
+import userReducer from "./user";
 
 const defaultState = {
 	username: '',
@@ -15,6 +16,13 @@ describe('auth reducer', () => {
 	it('should return the default state', () => {
 		expect(authReducer(defaultState, {}))
 			.toEqual(defaultState);
+	});
+
+	it('should return modified state', () => {
+		const modifiedState = new defaultState({username: 'foo'});
+
+		expect(userReducer(modifiedState, {}))
+			.toEqual(modifiedState);
 	});
 
 	it(`should handle ${actions.AUTH_UPDATE_FIELD_VALUE}`, () => {
