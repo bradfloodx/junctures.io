@@ -42,8 +42,8 @@ class JunctureCreateContainer extends Component {
 				{...juncture}
 				onFieldChange={this.props.onFieldChange}
 				onSubmit={onSubmit}
+				title="A New Juncture"
 				buttonLabel="Create"
-				title="New Juncture"
 			/>
 		);
 	}

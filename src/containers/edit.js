@@ -59,7 +59,8 @@ class JunctureEditContainer extends Component {
 				{...juncture}
 				onFieldChange={this.props.onFieldChange}
 				onSubmit={onSubmit}
-				buttonLabel="Save"
+                title="Warping Juncture"
+				buttonLabel="Publish"
 				onDelete={() =>
 					this.props.deleteJuncture(this.props.id)
 				}

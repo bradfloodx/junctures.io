@@ -31,7 +31,7 @@ const JunctureFormWrapper = ({
 						{date && time ?
 							displayDistance(date, time)
 							:
-							'A point in time'
+							'At a distance in time'
 						}
 					</Typography>
 					<TextField
