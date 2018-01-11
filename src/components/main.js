@@ -23,7 +23,7 @@ const Main = styled.main`
 `;
 
 const MainWrapper = ({children}) => (
-	<Main>
+	<Main ariaLive="polite">
 		{children}
 	</Main>
 );
