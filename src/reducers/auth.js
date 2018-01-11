@@ -5,7 +5,7 @@ const defaultState = {
 	password: ''
 };
 
-const authReducer = (state = defaultState, action) => {
+const authReducer = (state = defaultState, action = {}) => {
 	switch (action.type) {
 		case actions.AUTH_UPDATE_FIELD_VALUE:
 			return {
@@ -15,9 +15,9 @@ const authReducer = (state = defaultState, action) => {
 			};
 		case actions.AUTH_UNLOAD:
 			return defaultState;
+		default:
+			return state;
 	}
-
-	return state;
 };
 
 export default authReducer;

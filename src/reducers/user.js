@@ -7,7 +7,7 @@ export const defaultState = Record({
 	authenticated: false
 });
 
-export default function userReducer(state = defaultState, action) {
+export default function userReducer(state = defaultState, action = {}) {
 	switch (action.type) {
 		case actions.USER_AUTHENTICATED:
 			return new state({
@@ -17,7 +17,7 @@ export default function userReducer(state = defaultState, action) {
 		case actions.USER_NOT_AUTHENTICATED:
 		case actions.AUTH_SIGN_OUT_FULFILLED:
 			return defaultState;
+		default:
+			return state;
 	}
-
-	return state;
 };

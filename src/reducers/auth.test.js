@@ -19,7 +19,7 @@ describe('auth reducer', () => {
 	});
 
 	it('should return modified state', () => {
-		const modifiedState = new defaultState({username: 'foo'});
+		const modifiedState = {...defaultState, username: 'foo'};
 
 		expect(userReducer(modifiedState, {}))
 			.toEqual(modifiedState);

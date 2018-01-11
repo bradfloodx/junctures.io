@@ -6,7 +6,7 @@ const defaultState = {
 	appReady: false
 };
 
-const commonReducer = (state = defaultState, action) => {
+const commonReducer = (state = defaultState, action = {}) => {
 	switch (action.type) {
 		case actions.GOTO:
 			return {
@@ -42,9 +42,9 @@ const commonReducer = (state = defaultState, action) => {
 				...state,
 				appReady: true
 			};
+		default:
+			return state;
 	}
-
-	return state;
 };
 
 export default commonReducer;
