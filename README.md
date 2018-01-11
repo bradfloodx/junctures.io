@@ -8,21 +8,22 @@ Hey, welcome! Junctures is my personal project and a portfolio piece for my webs
 
 ## Technology
 
-### In production
+### Now
 
 * ES7 JavaScript
 * React
 * Redux
-* Firebase (Auth & DB)
-
-### In pipeline
-
-* Immutable.js
+* Firebase (Auth & Realtime DB)
 * Jest
+* Immutable.js
+
+### Next
+
 * React Drag and Drop
 * Storybook
+* Flow or TypeScript
 
-## Roadmap 2018
+## Road map
 
 * Great accessibility experience
 * Seamless cross device experience
@@ -30,4 +31,4 @@ Hey, welcome! Junctures is my personal project and a portfolio piece for my webs
 * MaterialUI components replaced with hand-written styled-components
 * Published app on iOS and Android app stores
  
-By [Bradley Flood](https://bradleyflood.com).
+By [Bradley Flood](https://bradleyflood.com)
