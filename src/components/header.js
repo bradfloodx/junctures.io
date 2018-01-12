@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
 import routes from '../routes';
-import {COLORS} from '../theme';
+import {COLORS, FONT_SIZES} from '../theme';
 
 const Header = styled.header`
 	margin-bottom: 15px;
@@ -34,7 +34,7 @@ const NavLink = styled(Link)`
 	display: inline-block;
 	padding: 8px 14px;
 	border-radius: 3px;
-	font-size: 16px;
+	font-size: ${FONT_SIZES.base}px;
 	font-family: 'Josefin Sans', sans-serif;
 	color: ${COLORS.header.links.color};
 	text-decoration: none;
@@ -44,17 +44,21 @@ const NavLink = styled(Link)`
 	}
 `;
 
+const NavLinkTitle = NavLink.extend`
+	font-size: ${FONT_SIZES.base * 1.2}px;
+`;
+
 export const HeaderWrapper = ({navLinks}) => (
 	<Header>
 		<nav>
 			<NavUl>
 				<NavLiTitle>
-					<NavLink
+					<NavLinkTitle
 						to={routes.home.path}
 						title={routes.home.description}
 					>
 						{routes.home.title}
-					</NavLink>
+					</NavLinkTitle>
 				</NavLiTitle>
 				{navLinks.map((link) => (
 					<NavLi>

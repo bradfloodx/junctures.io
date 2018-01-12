@@ -25,3 +25,9 @@ export const COLORS = {
 		color: 'hsla(38, 100%, 74%, 1)',
 	},
 };
+
+export const FONT_SIZES = {
+	small: 14,
+	base: 16,
+	title: 32,
+};
