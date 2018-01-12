@@ -1,57 +1,85 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+import styled from 'styled-components';
 
-import { withStyles } from 'material-ui/styles';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
+import routes from '../routes';
+import {COLORS} from '../theme';
 
-const styles = {
-	root: {
-		width: '100%',
-	},
-	logo: {
-		flex: 1,
-		cursor: 'pointer'
+const Header = styled.header`
+	margin-bottom: 15px;
+	padding: 15px;
+	background-color: ${COLORS.header.background};
+`;
+
+const NavUl = styled.ul`
+	display: flex;
+	margin: 0;
+	padding: 0;
+	justify-content: flex-end;
+	align-items: center;
+`;
+
+const NavLi = styled.li`
+	margin-left: 15px;
+	list-style: none;
+`;
+
+const NavLiTitle = styled.li`
+	flex-grow: 1;
+	list-style: none;
+`;
+
+const NavLink = styled(Link)`
+	display: inline-block;
+	padding: 8px 14px;
+	border-radius: 3px;
+	font-size: 16px;
+	font-family: 'Josefin Sans', sans-serif;
+	color: ${COLORS.header.links.color};
+	text-decoration: none;
+	
+	&:hover {
+		background-color: ${COLORS.header.links.hoverBackground};
 	}
-};
+`;
 
-export const HeaderWrapper = ({ classes, links, go }) => (
-	<div className={classes.root}>
-		<AppBar position="static">
-			<Toolbar>
-				<Typography
-					type="title"
-					color="inherit"
-					className={classes.logo}
-					onClick={() => {go('/')}}
-				>
-					Junctures.io
-				</Typography>
-				{links.map(({ title, path }) => (
-					<Button
-						color="contrast"
-						onClick={() => go(path)}
-						key={title}
+export const HeaderWrapper = ({navLinks}) => (
+	<Header>
+		<nav>
+			<NavUl>
+				<NavLiTitle>
+					<NavLink
+						to={routes.home.path}
+						title={routes.home.description}
 					>
-						{title}
-					</Button>
+						{routes.home.title}
+					</NavLink>
+				</NavLiTitle>
+				{navLinks.map((link) => (
+					<NavLi>
+						<NavLink
+							to={link.path}
+							title={link.description}
+						>
+							{link.title}
+						</NavLink>
+					</NavLi>
 				))}
-			</Toolbar>
-		</AppBar>
-	</div>
+			</NavUl>
+		</nav>
+	</Header>
 );
 
 HeaderWrapper.propTypes = {
-	classes: PropTypes.object, // MaterialUI
-	links: PropTypes.arrayOf(
+	navLinks: PropTypes.arrayOf(
 		PropTypes.shape({
 			title: PropTypes.string,
-			path: PropTypes.string
+			path: PropTypes.string,
+			description: PropTypes.string,
 		})
 	).isRequired,
-	go: PropTypes.func,
 };
 
-export default withStyles(styles)(HeaderWrapper);
+
+export default HeaderWrapper;

@@ -1,31 +1,38 @@
 export default {
 	home: {
-		title: 'Home',
-		path: '/'
+		title: 'Junctures.io',
+		path: '/',
+		description: 'Index page',
 	},
 	register: {
 		title: 'Register',
-		path: '/register'
+		path: '/register',
+		description: 'Register a new account on Junctures.io',
 	},
 	signIn: {
 		title: 'Sign In',
-		path: '/sign-in'
+		path: '/sign-in',
+		description: 'Sign in to your existing Junctures.io account',
 	},
 	signOut: {
 		title: 'Sign Out',
-		path: '/sign-out'
+		path: '/sign-out',
+		description: 'Sign out of Junctures.io',
 	},
 	juncturesCreate: {
 		title: 'Create',
-		path: '/junctures/new'
+		path: '/junctures/new',
+		description: 'Create a new Juncture',
 	},
 	junctures: {
 		title: 'List',
-		path: '/junctures'
+		path: '/junctures',
+		description: 'See your Junctures list',
 	},
 	juncturesEdit: {
 		title: 'Edit',
-		path: buildJuncturesEditRoute()
+		path: buildJuncturesEditRoute(),
+		description: 'Edit Juncture',
 	}
 };
 
