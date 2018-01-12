@@ -19,6 +19,7 @@ Hey, welcome! Junctures is my personal project and a portfolio piece for my webs
 
 ### Next
 
+* Headgear
 * React Drag and Drop
 * Storybook
 * Flow or TypeScript
