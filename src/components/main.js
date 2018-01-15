@@ -13,14 +13,10 @@ const breakpoints = {
 const Main = styled.main`
 	margin: 0 auto;
 	padding: 30px;
-	max-width: 300px;
-	
-	@media (min-width: ${breakpoints.tablet}px) {
-		max-width: 500px;
-	}
+	max-width: 100%;
 	
 	@media (min-width: ${breakpoints.desktop}px) {
-		max-width: 700px;
+		max-width: 960px;
 	}
 	
 	a,
