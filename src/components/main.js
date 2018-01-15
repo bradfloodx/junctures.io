@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import {COLORS} from '../theme';
+
 const breakpoints = {
 	mobile: 0,
 	tablet: 737,
@@ -19,6 +21,11 @@ const Main = styled.main`
 	
 	@media (min-width: ${breakpoints.desktop}px) {
 		max-width: 700px;
+	}
+	
+	a,
+	a:visited {
+		color: ${COLORS.body.links.color};
 	}
 `;
 

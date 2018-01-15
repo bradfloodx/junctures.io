@@ -1,17 +1,9 @@
 body {
 	margin: 0;
 	padding: 0;
-	background-color: hsla(0, 0%, 19%, 1);
-	font-family: 'Playfair Display', serif;
-	color: hsla(211, 21%, 75%, 1);
-}
-
-h1, h2, h3, h4 {
-	font-family: 'Josefin Sans', sans-serif;
-	color: hsla(38, 100%, 74%, 1);
-}
-
-a, a:visited, a:hover {
-	color: hsla(138,48%,50%,1);
-	font-weight: bold;
+	/* body.background: */
+	background-color: hsla(0, 0%, 90%, 1);
+	/* body.color: */
+	color: hsla(212, 12%, 31%, 1);
+	font-family: 'Raleway', sans-serif;
 }

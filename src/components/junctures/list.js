@@ -10,8 +10,6 @@ const JuncturesList = styled.article`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	
-	background-color: hsla(0, 0%, 76%, 1);
 `;
 
 const JuncturesListWrapper = ({junctures, go, create}) => (

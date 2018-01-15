@@ -1,9 +1,16 @@
+const THEME = {
+	primary: 'hsla(2, 85%, 65%, 1)',
+	primaryTint: 'hsla(2, 85%, 60%, 1)',
+	white: 'hsla(0, 0%, 100%, 1)',
+	base: 'hsla(0, 0%, 90%, 1)',
+};
+
 export const COLORS = {
 	body: {
-		background: 'hsla(0, 0%, 19%, 1)',
-		color: 'hsla(211, 21%, 75%, 1)',
+		background: THEME.base,
+		color: 'hsla(212, 12%, 31%, 1)',
 		links: {
-			color: 'hsla(138,48%,50%,1)',
+			color: THEME.primary,
 		},
 		actions: {
 			primary: {
@@ -15,14 +22,14 @@ export const COLORS = {
 		},
 	},
 	header: {
-		background: 'hsla(200, 4%, 28%, 1)',
+		background: THEME.primary,
 		links: {
-			color: 'hsla(138, 48%, 50%, 1)',
-			hoverBackground: 'hsla(200, 4%, 30%, 1)',
+			color: THEME.white,
+			hoverBackground: THEME.primaryTint,
 		},
 	},
 	heading: {
-		color: 'hsla(38, 100%, 74%, 1)',
+		color: 'hsla(0, 0%, 60%, 1)',
 	},
 };
 

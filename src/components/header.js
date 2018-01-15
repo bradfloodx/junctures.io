@@ -32,7 +32,7 @@ const NavLiTitle = styled.li`
 
 const NavLink = styled(Link)`
 	display: inline-block;
-	padding: 8px 14px;
+	padding: 10px 15px;
 	border-radius: 3px;
 	font-size: ${FONT_SIZES.base}px;
 	font-family: 'Josefin Sans', sans-serif;
