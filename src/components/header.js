@@ -45,7 +45,12 @@ const NavLink = styled(Link)`
 `;
 
 const NavLinkTitle = NavLink.extend`
-	font-size: ${FONT_SIZES.base * 1.2}px;
+	padding: 6px 15px;
+	font-size: 24px;
+`;
+
+const TitleDomain = styled.span`
+	font-size: 14px;
 `;
 
 export const HeaderWrapper = ({navLinks}) => (
@@ -57,7 +62,7 @@ export const HeaderWrapper = ({navLinks}) => (
 						to={routes.home.path}
 						title={routes.home.description}
 					>
-						{routes.home.title}
+						Junctures<TitleDomain>.io</TitleDomain>
 					</NavLinkTitle>
 				</NavLiTitle>
 				{navLinks.map((link) => (
