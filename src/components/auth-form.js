@@ -32,6 +32,8 @@ const AuthFormWrapper = ({
 							required
 							onChange={onChange}
 							margin="normal"
+							autocomplete="email"
+							autofocus
 						/>
 					</div>
 					<div>
@@ -43,8 +45,11 @@ const AuthFormWrapper = ({
 							required
 							onChange={onChange}
 							margin="normal"
+							autocomplete="new-password"
+							minlength="6"
 						/>
 					</div>
+					<p>Min 6 characters for password</p>
 				</CardContent>
 				<CardActions>
 					<Button raised color="primary" type="submit">
