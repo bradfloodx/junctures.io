@@ -29,5 +29,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom --bail --noStackTrace --notify",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "jest-styled-components": "^4.10.0"
   }
 }
