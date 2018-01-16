@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render correctly 1`] = `
+exports[`renders snapshot correctly 1`] = `
 .c0 {
   display: inline-block;
   padding: 0 16px;
@@ -23,6 +23,7 @@ exports[`render correctly 1`] = `
 
 <button
   className="c0"
+  onClick={[Function]}
   type=""
 >
   Next

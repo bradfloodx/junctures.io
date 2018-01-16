@@ -24,19 +24,19 @@ const Button = styled.button`
 	}
 `;
 
-const ButtonWrapper = ({text, type}) => (
-	<Button type={type}>
+const ButtonWrapper = ({onClick, text, type}) => (
+	<Button onClick={onClick} type={type}>
 		{text}
 	</Button>
 );
 
 ButtonWrapper.propTypes = {
+	onClick: PropTypes.func.isRequired,
 	text: PropTypes.string.isRequired,
 	type: PropTypes.string,
 };
 
 ButtonWrapper.defaultProps = {
-	text: '',
 	type: '',
 };
 
