@@ -6,6 +6,7 @@ import Home from './home';
 import Header from './header';
 import Register from './register';
 import SignIn from './sign-in';
+import Profile from './profile';
 import SignOut from './sign-out';
 import JuncturesCreate from './create';
 import JuncturesList from './list';
@@ -85,6 +86,10 @@ class App extends Component {
 							<Route
 								exact path={routes.signOut.path}
 								component={SignOut}
+							/>
+							<Route
+								exact path={routes.profile.path}
+								component={Profile}
 							/>
 							<Route
 								component={NotFound}

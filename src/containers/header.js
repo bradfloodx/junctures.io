@@ -28,6 +28,7 @@ const HeaderContainer = ({ userAuthenticated, ready, go }) => {
 		<Header
 			navLinks={ready ? links : []}
 			go={go}
+			profileLink={userAuthenticated ? routes.profile : null}
 		/>
 	)
 };
