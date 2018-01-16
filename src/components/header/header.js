@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import routes from '../routes';
 import {COLORS, FONT_SIZES} from '../theme';
+import profileIcon from './ic_person_white_36dp_2x.png';
 
 const Header = styled.header`
 	margin-bottom: 15px;
@@ -53,7 +54,11 @@ const TitleDomain = styled.span`
 	font-size: 14px;
 `;
 
-export const HeaderWrapper = ({navLinks}) => (
+const ProfileIcon = styled.img`
+	width: ${FONT_SIZES.base}px;
+`;
+
+export const HeaderWrapper = ({navLinks, profileLink}) => (
 	<Header>
 		<nav>
 			<NavUl>
@@ -75,6 +80,18 @@ export const HeaderWrapper = ({navLinks}) => (
 						</NavLink>
 					</NavLi>
 				))}
+				{profileLink &&
+					<NavLi>
+						<NavLink
+							to={profileLink.path}
+						>
+							<ProfileIcon
+								src={profileIcon}
+								alt={profileLink.description}
+							/>
+						</NavLink>
+					</NavLi>
+				}
 			</NavUl>
 		</nav>
 	</Header>
@@ -88,6 +105,7 @@ HeaderWrapper.propTypes = {
 			description: PropTypes.string,
 		})
 	).isRequired,
+	// profileLink: PropTypes.,
 };
 
 
