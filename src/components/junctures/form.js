@@ -55,6 +55,7 @@ const JunctureFormWrapper = ({
 					onChange={onChange}
 					margin="normal"
 					fullWidth
+					autoFocus
 				/>
 				<DistanceFields>
 					<TextField
