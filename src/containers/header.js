@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Header from '../components/header'
+import Header from '../components/header/header'
 import routes from '../routes';
 import { goTo } from '../actions/common';
 

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 
-import routes from '../routes';
-import {COLORS, FONT_SIZES} from '../theme';
+import routes from '../../routes';
+import {COLORS, FONT_SIZES} from '../../theme';
 import profileIcon from './ic_person_white_36dp_2x.png';
 
 const Header = styled.header`
