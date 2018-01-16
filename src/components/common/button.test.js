@@ -5,7 +5,7 @@ import {shallow} from 'enzyme';
 
 import Button from './button';
 
-it('renders snapshot correctly', () => {
+test('renders snapshot correctly', () => {
 	const tree = renderer
 		.create(<Button onClick={() => {}} text="Next"/>)
 		.toJSON();
@@ -13,11 +13,11 @@ it('renders snapshot correctly', () => {
 	expect(tree).toMatchSnapshot();
 });
 
-it('renders without crashing', () => {
+test('renders without crashing', () => {
 	shallow(<Button onClick={() => {}} text="Next"/>);
 });
 
-it('calls onClick handler prop when clicked', () => {
+test('calls onClick handler prop when clicked', () => {
 	const onClickHandler = jest.fn();
 	const wrapper = shallow(<Button onClick={onClickHandler} text="Next"/>);
 
@@ -25,7 +25,7 @@ it('calls onClick handler prop when clicked', () => {
 	expect(onClickHandler).toHaveBeenCalledTimes(1);
 });
 
-it('displays the correct text value', () => {
+test('displays the correct text value', () => {
 	const text = 'Forest';
 	const onClickHandler = jest.fn();
 	const wrapper = shallow(<Button onClick={onClickHandler} text={text}/>);
